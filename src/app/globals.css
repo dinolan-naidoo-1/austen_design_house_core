@@ -1,26 +1,292 @@
-@import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+
+
+.section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0;
+}
+
+.home-section {
+  background-color: #ffffff;
+}
+
+.about-section {
+  background-color: #e9ecef;
+}
+
+.contact-section {
+  background-color: #ffffff;
+}
+
+/* Navbar styles */
+/* Add to your globals.css file */
+
+/* Add to your globals.css file */
+
+/* Add to your globals.css file */
+
+/* Reset styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+.section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0;
+}
+
+.home-section {
+  background-color: #ffffff;
+}
+
+.about-section {
+  background-color: #e9ecef;
+}
+
+.contact-section {
+  background-color: #ffffff;
+}
+
+/* Navbar styles with responsive proportional scaling */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 7%;
+  background-color: #000000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%; /* Ensure full width */
+  z-index: 1000;
+  transition: all 0.3s ease-in-out;
+  border-bottom-left-radius: 3rem;
+  border-bottom-right-radius: 3rem;
+  overflow: hidden; /* Prevent content overflow */
+}
+
+.navbar.scrolled {
+  background-color: #000000;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo a {
+  display: flex;
+  align-items: center;
+}
+
+.nav-logo {
+  width: auto !important;
+  height: auto !important;
+  max-height: 12vmin !important;
+  min-height: 60px !important;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav-items {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-size: clamp(1rem, 2vw, 1.6rem);
+}
+
+.nav-items li {
+  margin-left: clamp(0.5rem, 1vw, 2rem);
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 clamp(1rem, 2vw, 4rem);
+}
+.nav-items a {
+  color: #ffffff;
+  text-decoration: none;
+  padding: 0.5rem 0;
+  position: relative;
+  transition: color 0.1s ease-in-out;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+/* Add the hover effect - line that animates from left to right */
+.nav-items a::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: -0.5rem;
+  width: 0;
+  height: 2px;
+  background-color: #ffffff;
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-items a:hover::after {
+  width: calc(100% + 1rem);
+}
+
+/* Update the active state to ensure it doesn't conflict with hover */
+.nav-items a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: -0.5rem;
+  width: calc(100% + 1rem);
+  height: 2px;
+  background-color: #ffffff;
+}
+
+
+/* Hamburger menu styles */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 2rem;
+  height: 2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding-right: 4rem; /* Remove excess padding */
+  margin-right: 1rem;
+  z-index: 1100;
+}
+
+.hamburger:focus {
+  outline: none;
+}
+
+.hamburger-line {
+  width: 2rem;
+  height: 0.25rem;
+  background-color: #ffffff;
+  border-radius: 10px;
+  transition: all 0.3s linear;
+  position: relative;
+  transform-origin: 1px;
+}
+
+/* Media query for larger tablets and smaller desktops */
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 1rem 5%; /* Balanced padding */
+    /* Keep the same border radius */
+    overflow: hidden; /* Maintain overflow control */
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-items {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 60vh; /* More proportional height */
+    width: min(250px, 40vw); /* Responsive width */
+    flex-direction: column;
+    background-color: #000000;
+    padding: 6rem 2rem 2rem 2rem;
+    transition: right 0.3s ease-in-out;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    border-bottom-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    overflow: hidden; /* Ensure content doesn't overflow */
+  }
+
+  .nav-items.open {
+    right: 0;
+  }
+
+  .nav-items li {
+    margin: 1.5rem 0;
+    width: 100%;
+    padding: 0;
+  }
+
+  .nav-items a {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .nav-items a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -0.25rem; /* More consistent with desktop */
+    left: -0.5rem;
+    width: 100%;
+    height: 2px;
+    background-color: #ffffff;
+    top: auto; /* Remove top positioning */
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Media query for smaller tablets */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem 4%; /* Slightly reduced padding */
+    border-bottom-left-radius: 2.5rem; /* Slightly smaller radius */
+    border-bottom-right-radius: 2.5rem; /* Slightly smaller radius */
+  }
+
+  .nav-items {
+    width: min(250px, 50vw); /* Wider on smaller screens */
+  }
+}
+
+/* Media query for mobile phones */
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0.75rem 3%; /* Further reduced padding */
+    border-bottom-left-radius: 2rem; /* Smaller radius for mobile */
+    border-bottom-right-radius: 2rem; /* Smaller radius for mobile */
+  }
+
+  .nav-logo {
+    min-height: 50px !important; /* Slightly smaller logo */
+  }
+
+  .nav-items {
+    width: 55vw; /* Wider menu on phones */
+    padding: 5rem 1.5rem 1.5rem 1.5rem; /* Adjusted padding */
+  }
 }
