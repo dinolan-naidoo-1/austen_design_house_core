@@ -127,7 +127,7 @@ const ContactSection: React.FC<SectionProps> = ({ id }) => {
                                         value={formData.email}
                                         onChange={handleChange}
                                         onBlur={() => formData.email && validateEmail(formData.email)}
-                                        placeholder="your email*"
+                                        placeholder="Email*"
                                         required
                                         className={`form-input ${emailError ? 'error' : ''}`}
                                     />
@@ -141,7 +141,7 @@ const ContactSection: React.FC<SectionProps> = ({ id }) => {
                                         name="contactNumber"
                                         value={formData.contactNumber}
                                         onChange={handleChange}
-                                        placeholder="contact number*"
+                                        placeholder="Contact Number*"
                                         required
                                         pattern="^\d{9,15}$"
                                         title="Enter a valid phone number"
@@ -152,7 +152,7 @@ const ContactSection: React.FC<SectionProps> = ({ id }) => {
                                 {/* Interest */}
                                 <div className="form-group">
                                     <label htmlFor="interest-select" className="select-label">
-                                        I'm interested in*
+                                        What’s your project about? Let us know!
                                     </label>
                                     <select
                                         id="interest-select"
@@ -165,14 +165,16 @@ const ContactSection: React.FC<SectionProps> = ({ id }) => {
                                         <option value="" disabled>
                                             Select an option
                                         </option>
-                                        <option value="3D Product Visualization">
-                                            3D Product Visualization
+                                        <option value="3D Interactive AR Models ">
+                                            3D Interactive AR Models
                                         </option>
-                                        <option value="Interior Design">Interior Design</option>
-                                        <option value="Architectural Visualization">
-                                            Architectural Visualization
+                                        <option value="Product Animations">Product Animations</option>
+                                        <option value="Technical Drawings">
+                                            Technical Drawings
                                         </option>
-                                        <option value="Virtual Reality">Virtual Reality</option>
+                                        <option value="Interior Renders">Interior Renders</option>
+                                        <option value="Furniture Models & Fabric Application">Furniture Models & Fabric Application</option>
+                                        <option value="Sheet Metal Design; Bending Orientations; DXF Files">Sheet Metal Design; Bending Orientations; DXF Files</option>
                                         <option value="Other">Other</option>
                                     </select>
                                 </div>
@@ -345,6 +347,7 @@ const ContactSection: React.FC<SectionProps> = ({ id }) => {
           display: block;
           margin-bottom: 0.5rem;
           font-family: var(--font-quicksand);
+          font-size: 0.8rem;
         }
 
         .form-textarea {
