@@ -152,19 +152,11 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
             >
               <div style={{ position: "relative", height: "192px" }}>
                 <Image
-                  src="/path-to-second-image.jpg"
+                  src="/clickable_image_1.png"
                   alt="AR Product 2"
                   fill
                   style={{ objectFit: "contain" }}
                 />
-                <div style={{ position: "absolute", top: "8px", right: "8px" }}>
-                  <Image
-                    src="/path-to-3d-icon.svg"
-                    alt="3D"
-                    width={24}
-                    height={24}
-                  />
-                </div>
               </div>
               <div style={{ padding: "12px" }}>
                 <h3
@@ -199,19 +191,11 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
             >
               <div style={{ position: "relative", height: "192px" }}>
                 <Image
-                  src="/path-to-third-image.jpg"
+                  src="/clickable_image_1.png"
                   alt="AR Product 3"
                   fill
                   style={{ objectFit: "contain" }}
                 />
-                <div style={{ position: "absolute", top: "8px", right: "8px" }}>
-                  <Image
-                    src="/path-to-3d-icon.svg"
-                    alt="3D"
-                    width={24}
-                    height={24}
-                  />
-                </div>
               </div>
               <div style={{ padding: "12px" }}>
                 <h3
@@ -264,14 +248,14 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                 gap: "16px",
               }}
             >
-              <div style={{ width: "25%" }}>
+              {/*              <div style={{ width: "25%" }}>
                 <Image
-                  src="/path-to-apple-pay-logo.svg"
+                  src="/clickable_image_1.png"
                   alt="Apple Pay"
                   width={150}
                   height={60}
                 />
-              </div>
+              </div>*/}
               <div style={{ width: "75%" }}>
                 <p
                   style={{
