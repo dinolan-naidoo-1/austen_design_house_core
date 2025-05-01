@@ -26,7 +26,6 @@ export default function Home() {
     <main className={`${quicksand.variable} ${poppins.variable}`}>
       <HomeSection id="home" />
       <OurWorkSection id="our-work" />
-      <OurClientsSection id="our-clients" />
       <ContactSection id="contact" />
       <InformationFooter id ="information-footer"/>
     </main>
