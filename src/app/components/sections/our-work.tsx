@@ -15,6 +15,33 @@ interface SafeImageProps {
     layout?: "fill" | "fixed" | "responsive";
 }
 
+const ApplePayButton = () => {
+    return (
+        <div
+            style={{
+                backgroundColor: "black",
+                borderRadius: "1.3rem",
+                color: "white",
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontFamily: "-apple-system, BlinkMacSystemFont, sans-serif",
+                fontSize: "2rem",
+                fontWeight: "500",
+                minHeight: "48px",
+                padding: "0.2rem",
+                width: "50%"
+            }}
+        >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginRight: "8px" }}>
+                <path d="M17.0425 12.4576C17.0187 9.47448 19.53 8.03698 19.6425 7.96948C18.21 5.84198 16.0125 5.55948 15.225 5.53698C13.425 5.34948 11.6887 6.65198 10.7775 6.65198C9.84375 6.65198 8.44125 5.55948 6.90375 5.58948C4.93125 5.61948 3.09375 6.74198 2.0925 8.46948C-0.0075 12.0045 1.48875 17.1945 3.48 19.992C4.485 21.372 5.67 22.9395 7.2375 22.887C8.76 22.8345 9.33375 21.912 11.175 21.912C12.9975 21.912 13.5375 22.887 15.1275 22.857C16.77 22.8345 17.8125 21.4395 18.7725 20.052C19.935 18.447 20.4037 16.8645 20.4262 16.7895C20.385 16.7745 17.07 15.4395 17.0425 12.4576Z" fill="white"/>
+                <path d="M14.3831 3.75C15.2119 2.73 15.7594 1.365 15.6244 0C14.4281 0.045 12.9394 0.7875 12.0744 1.7775C11.3081 2.64 10.6481 4.05 10.8056 5.3625C12.1431 5.4525 13.5244 4.7475 14.3831 3.75Z" fill="white"/>
+            </svg>
+            Pay
+        </div>
+    );
+};
+
 const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
     // Safe image component with error handling
     const SafeImage: React.FC<SafeImageProps> = ({
@@ -405,10 +432,9 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                         </div>
                     </div>
 
-                    {/* Apple AR Integration content */}
                     <div
                         style={{
-                            marginTop: "10rem",
+                            marginTop: "clamp(2rem, 2.5vw, 20rem)",
                             padding: "16px",
                             backgroundColor: "#dcdcdc",
                             borderRadius: "8px",
@@ -416,52 +442,55 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                     >
                         <h2
                             style={{
-                                fontSize: "2.3rem",
+                                fontSize: "clamp(1.8rem, 2.5vw, 2.3rem)",
                                 fontWeight: 600,
                                 marginBottom: "8px",
                                 fontFamily: "var(--font-quicksand)",
-                                padding: "3rem"
+                                padding: "3rem",
                             }}
                         >
                             Apple integration in Augmented Reality (AR) Environment
                         </h2>
+
                         <div
                             style={{
                                 display: "flex",
                                 flexDirection: "row",
                                 alignItems: "center",
-                                gap: "16px",
+                                gap: "5px",
+                                flexWrap: "wrap",
+                                justifyContent: "center", // centers children on small screens
                             }}
                         >
                             <div
-                                style={{ width: "25%", height: "60px", position: "relative", padding: "1rem" }}
+                                style={{
+                                    flex: "1 1 200px",
+                                    maxWidth: "100%",
+                                    minWidth: "150px",
+                                    paddingLeft: "2rem",
+                                    height: "60px",
+                                    position: "relative",
+                                }}
                             >
-                                {/* Instead of missing image, create a placeholder */}
-                                <div
-                                    style={{
-                                        width: "100%",
-                                        height: "100%",
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                        backgroundColor: "#f0f0f0",
-                                        borderRadius: "4px",
-                                    }}
-                                >
-                                    <p style={{ fontWeight: "bold" }}>Apple Pay</p>
-                                </div>
+                                <ApplePayButton />
                             </div>
-                            <div style={{ width: "75%" }}>
+                            <div
+                                style={{
+                                    flex: "2 1 300px",
+                                    maxWidth: "100%",
+                                    paddingRight: "2rem",
+                                }}
+                            >
                                 <p
                                     style={{
                                         color: "#4B5563",
                                         fontFamily: "var(--font-quicksand)",
-                                        fontSize: "2rem"
+                                        fontSize: "clamp(1.3rem, 2vw, 2rem)",
                                     }}
                                 >
-                                    Apple Pay can now be integrated into the AR Quicklook
-                                    environment so customers can make purchases from your website
-                                    while interacting with your 3D product model.
+                                    Apple Pay can now be integrated into the AR Quicklook environment so
+                                    customers can make purchases from your website while interacting with your
+                                    3D product model.
                                 </p>
                             </div>
                         </div>
@@ -484,7 +513,8 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                 <div
                     style={{
                         flex: "1",
-                        minWidth: "300px",
+                        minWidth: "100px",
+                        width: "20%",
                         position: "relative",
                         height: "40rem",
                         borderRadius: "8px",
