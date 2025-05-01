@@ -130,11 +130,12 @@ const HomeSection: React.FC<SectionProps> = ({ id }) => {
                 transformOrigin: "center bottom",
               }}
             >
-              {"ANIMATIONS;AUGMENTED REALITY".split("").map((char, index) => (
+              ANIMATIONS
+              {/*{"ANIMATIONS;AUGMENTED REALITY".split("").map((char, index) => (
                 <span key={index} className="animated-letter">
                   {char}
                 </span>
-              ))}
+              ))}*/}
             </h1>
           </>
 

@@ -1,13 +1,78 @@
-"use-client";
+"use client";
 
-import React from "react";
-
+import React, { useState, useEffect } from "react";
 import { SectionProps } from "../../types";
 import WhatsAppButton from "@/app/components/features/whatsapp-button";
 import Image from "next/image";
 
+// Define proper interface for SafeImage props
+interface SafeImageProps {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  style?: React.CSSProperties;
+  layout?: "fill" | "fixed" | "responsive";
+}
+
 const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
-  // @ts-ignore
+  // Safe image component with error handling
+  const SafeImage: React.FC<SafeImageProps> = ({
+    src,
+    alt,
+    width,
+    height,
+    style = {},
+    layout,
+  }) => {
+    const [error, setError] = useState(false);
+
+    if (error) {
+      return (
+        <div
+          style={{
+            backgroundColor: "#f0f0f0",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: width ? `${width}px` : "100%",
+            height: height ? `${height}px` : "100%",
+            ...style,
+          }}
+        >
+          <p style={{ color: "#666", fontSize: "0.8rem" }}>{alt}</p>
+        </div>
+      );
+    }
+
+    // For fill layout
+    if (layout === "fill") {
+      return (
+        <div style={{ position: "relative", width: "100%", height: "100%" }}>
+          <Image
+            src={src}
+            alt={alt}
+            fill
+            style={style}
+            onError={() => setError(true)}
+          />
+        </div>
+      );
+    }
+
+    // For fixed dimensions
+    return (
+      <Image
+        src={src}
+        alt={alt}
+        width={width || 100}
+        height={height || 100}
+        style={style}
+        onError={() => setError(true)}
+      />
+    );
+  };
+
   return (
     <section
       id={id}
@@ -128,16 +193,16 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
             <div
               style={{
                 position: "relative",
-                height: "auto",
+                height: "200px",
                 borderRadius: "8px",
                 overflow: "hidden",
                 boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
               }}
             >
-              <Image
+              <SafeImage
                 src="/clickable_image_1.png"
                 alt="AR Product 1"
-                fill
+                layout="fill"
                 style={{ objectFit: "contain" }}
               />
             </div>
@@ -151,10 +216,10 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
               }}
             >
               <div style={{ position: "relative", height: "192px" }}>
-                <Image
-                  src="/clickable_image_1.png"
+                <SafeImage
+                  src="/austen-logo-white.png" // Using a placeholder that exists
                   alt="AR Product 2"
-                  fill
+                  layout="fill"
                   style={{ objectFit: "contain" }}
                 />
               </div>
@@ -190,10 +255,10 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
               }}
             >
               <div style={{ position: "relative", height: "192px" }}>
-                <Image
-                  src="/clickable_image_1.png"
+                <SafeImage
+                  src="/austen-logo-white.png" // Using a placeholder that exists
                   alt="AR Product 3"
-                  fill
+                  layout="fill"
                   style={{ objectFit: "contain" }}
                 />
               </div>
@@ -248,14 +313,24 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                 gap: "16px",
               }}
             >
-              {/*              <div style={{ width: "25%" }}>
-                <Image
-                  src="/clickable_image_1.png"
-                  alt="Apple Pay"
-                  width={150}
-                  height={60}
-                />
-              </div>*/}
+              <div
+                style={{ width: "25%", height: "60px", position: "relative" }}
+              >
+                {/* Instead of missing image, create a placeholder */}
+                <div
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: "#f0f0f0",
+                    borderRadius: "4px",
+                  }}
+                >
+                  <p style={{ fontWeight: "bold" }}>Apple Pay</p>
+                </div>
+              </div>
               <div style={{ width: "75%" }}>
                 <p
                   style={{
