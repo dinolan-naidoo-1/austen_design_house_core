@@ -412,7 +412,7 @@ const ContactSection: React.FC<SectionProps> = ({ id }) => {
               /* Media Queries */
               @media (max-width: 1024px) {
                 .contact-form {
-                  padding: 0 2rem;
+                  padding: 0 1rem;
                 }
               }
 
@@ -428,11 +428,24 @@ const ContactSection: React.FC<SectionProps> = ({ id }) => {
                 .contact-content {
                   flex-direction: column;
                   gap: 1.5rem;
+                  align-items: center;
                 }
 
                 .contact-info {
                   order: 2;
-                  padding: 0 1.5rem;
+                  padding: 0 0.1rem;
+                  text-align: center;
+                  max-width: 100%;
+                  width: 100%;
+                  display: flex;
+                  flex-direction: row;
+                  justify-content: center;
+                  flex-wrap: wrap;
+                }
+
+                .info-block {
+                  margin: 0 0.1rem;
+                  min-width: 200px;
                 }
 
                 .contact-form {
@@ -463,11 +476,15 @@ const ContactSection: React.FC<SectionProps> = ({ id }) => {
                 }
 
                 .contact-info {
-                  padding: 0 0.5rem;
+                  padding: 0;
+                  flex-direction: column;
+                  align-items: center;
                 }
 
                 .info-block {
-                  margin-bottom: 0.5rem;
+                  margin: 0.5rem 0;
+                  text-align: center;
+                  width: 100%;
                 }
 
                 .info-title {
