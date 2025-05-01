@@ -566,7 +566,7 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                         >
                             <a
                                 rel="ar"
-                                href="/gear-pump.usdz"
+                                href="/interactive-product-3.usdz"
                                 style={{
                                     display: "block",
                                     height: "100%",
