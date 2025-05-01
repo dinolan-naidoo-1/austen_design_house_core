@@ -186,7 +186,7 @@ body {
   background: transparent;
   border: none;
   cursor: pointer;
-  padding-right: 4rem; /* Remove excess padding */
+  padding-right: 2rem; /* Remove excess padding */
   margin-right: 1rem;
   z-index: 1100;
 }

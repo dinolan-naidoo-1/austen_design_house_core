@@ -290,11 +290,11 @@ const ContactSection: React.FC<SectionProps> = ({ id }) => {
                 flex: 1 1 250px;
                 display: flex;
                 flex-direction: column;
-                gap: 2rem;
+                gap: 1rem;
               }
 
               .info-block {
-                margin-bottom: 1rem;
+                margin-bottom: 0;
               }
 
               .info-title {

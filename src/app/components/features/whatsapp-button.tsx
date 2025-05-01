@@ -11,7 +11,7 @@ interface WhatsAppButtonProps {
 }
 
 const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
-                                                           phoneNumber = "27713028616", // Default phone number with country code
+                                                           phoneNumber = "27680759791", // Default phone number with country code
                                                            message = "Hello, I'm interested in your services.",
                                                            buttonText = "Chat on WhatsApp",
                                                            showIcon = true,
