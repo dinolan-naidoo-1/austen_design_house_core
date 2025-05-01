@@ -384,7 +384,7 @@ const HomeSection: React.FC<SectionProps> = ({ id }) => {
           }}
         >
           {/* 3D Model Embed */}
-          <div
+          {/*    <div
             style={{
               position: "relative",
               width: "70%",
@@ -419,7 +419,7 @@ const HomeSection: React.FC<SectionProps> = ({ id }) => {
                 style={{ width: "100%", height: "400px" }}
               />
             </div>
-          </div>
+          </div>*/}
         </div>
       </div>
 
