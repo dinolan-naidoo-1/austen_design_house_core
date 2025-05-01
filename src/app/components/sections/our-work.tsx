@@ -15,6 +15,179 @@ interface SafeImageProps {
     layout?: "fill" | "fixed" | "responsive";
 }
 
+const ImmersiveEcommerceStats = () => {
+    const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+    useEffect(() => {
+        const checkScreenSize = () => {
+            if (typeof window !== 'undefined') {
+                setIsSmallScreen(window.innerWidth < 768);
+            }
+        };
+
+        checkScreenSize();
+        window.addEventListener('resize', checkScreenSize);
+
+        return () => window.removeEventListener('resize', checkScreenSize);
+    }, []);
+
+    const circleSize = isSmallScreen ? 90 : 120;
+    const innerCircleSize = isSmallScreen ? 60 : 80;
+    const fontSizePercent = isSmallScreen ? '1.1rem' : '1.8rem';
+    const fontSizeText = isSmallScreen ? '0.9rem' : '1.6rem';
+    const fontSizeSource = isSmallScreen ? '0.7rem' : '0.9rem';
+
+    const circleWrapperStyle: React.CSSProperties = {
+        display: 'flex',
+        alignItems: 'center',
+        marginBottom: '2rem',
+    };
+
+    const circleStyle: React.CSSProperties = {
+        position: 'relative',
+        width: `${circleSize}px`,
+        height: `${circleSize}px`,
+        borderRadius: '50%',
+        backgroundColor: '#e0e0e0',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginRight: '1.5rem',
+        flexShrink: 0,
+    };
+
+    const orangeCircleStyle: React.CSSProperties = {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        borderRadius: '50%',
+        clipPath: 'polygon(50% 50%, 100% 0, 100% 100%, 0 100%, 0 0)',
+        backgroundColor: '#FF8A00',
+        zIndex: 0,
+    };
+
+    const innerCircleStyle: React.CSSProperties = {
+        width: `${innerCircleSize}px`,
+        height: `${innerCircleSize}px`,
+        borderRadius: '50%',
+        backgroundColor: 'white',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        zIndex: 1,
+    };
+
+    const percentStyle: React.CSSProperties = {
+        fontSize: fontSizePercent,
+        fontWeight: 'bold',
+        fontFamily: 'var(--font-quicksand)',
+    };
+
+    const textStyle: React.CSSProperties = {
+        fontSize: fontSizeText,
+        fontFamily: 'var(--font-quicksand)',
+        flex: 1,
+    };
+
+    const containerStyle: React.CSSProperties = {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        backgroundColor: 'white',
+        borderRadius: '8px',
+        padding: '2rem',
+        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+        height: '100%',
+    };
+
+    const titleStyle: React.CSSProperties = {
+        fontSize: 'clamp(1.5rem, 2vw, 2rem)',
+        fontWeight: 'bold',
+        textAlign: 'center',
+        marginBottom: '2rem',
+        fontFamily: 'var(--font-quicksand)',
+    };
+
+    const sourceStyle: React.CSSProperties = {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: '1rem',
+        color: '#555',
+        fontSize: fontSizeSource,
+    };
+
+    return (
+        <div style={containerStyle}>
+            <h2 style={titleStyle}>THE GROWING TREND OF IMMERSIVE E-COMMERCE</h2>
+
+            <div style={circleWrapperStyle}>
+                <div style={circleStyle}>
+                    <div style={orangeCircleStyle}></div>
+                    <div style={innerCircleStyle}>
+                        <span style={percentStyle}>71%</span>
+                    </div>
+                </div>
+                <p style={textStyle}>
+                    Shoppers would frequent stores more if AR was implemented
+                </p>
+            </div>
+
+            <div style={circleWrapperStyle}>
+                <div style={circleStyle}>
+                    <div style={orangeCircleStyle}></div>
+                    <div style={innerCircleStyle}>
+                        <span style={percentStyle}>71%</span>
+                    </div>
+                </div>
+                <p style={textStyle}>
+                    Gen Z & Millennials are more likely to use AR frequently
+                </p>
+            </div>
+
+            <div style={circleWrapperStyle}>
+                <div style={circleStyle}>
+                    <div style={{
+                        ...orangeCircleStyle,
+                        clipPath: 'polygon(50% 50%, 100% 0, 100% 100%, 0 100%, 0 0, 100% 0)' as any
+                    }}></div>
+                    <div style={innerCircleStyle}>
+                        <span style={percentStyle}>94%</span>
+                    </div>
+                </div>
+                <p style={textStyle}>
+                    3D content can drive a 94% conversion rate
+                </p>
+            </div>
+
+            <div style={circleWrapperStyle}>
+                <div style={circleStyle}>
+                    <div style={{
+                        ...orangeCircleStyle,
+                        clipPath: 'polygon(50% 50%, 100% 0, 100% 100%, 0 100%, 0 0, 100% 0)' as any
+                    }}></div>
+                    <div style={innerCircleStyle}>
+                        <span style={percentStyle}>5x</span>
+                    </div>
+                </div>
+                <p style={textStyle}>
+                    3D and AR merchandising has been shown to deliver a five times increase in time on a website.
+                </p>
+            </div>
+
+            <div style={sourceStyle}>
+                <span>www.forbes.com</span>
+                <span style={{ margin: '0 0.5rem', fontWeight: 'bold', fontSize: '1.4rem' }}>Forbes</span>
+                <span>Karina Kogan</span>
+            </div>
+        </div>
+    );
+};
+
+
+
 const ApplePayButton = () => {
     return (
         <div
@@ -178,7 +351,7 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                     strokeLinecap="round"
                 />
             </svg>
-            AR View
+            AR View for iOS
         </div>
     );
 
@@ -509,33 +682,25 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                     marginTop: "1rem",
                 }}
             >
-                {/* Featured image - now on the left */}
+                {/* Analytics section */}
                 <div
                     style={{
                         flex: "1",
-                        minWidth: "100px",
-                        width: "20%",
+                        minWidth: "300px",
                         position: "relative",
-                        height: "40rem",
                         borderRadius: "8px",
                         overflow: "hidden",
-                        boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-                        backgroundColor: "white",
+                        height: "auto",
                     }}
                 >
-                    <SafeImage
-                        src="/analytics-image.png"
-                        alt="Analytics"
-                        layout="fill"
-                        style={{ objectFit: "cover", height: "100%", width: "100%" }}
-                    />
+                    <ImmersiveEcommerceStats />
                 </div>
 
                 {/* Second video - now on the right */}
                 <div
                     style={{
-                        width: "350px",
-                        height: "40rem",
+                        width: "400px",
+                        height: "auto",
                         overflow: "hidden",
                         backgroundColor: "white",
                         boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
@@ -556,7 +721,7 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                 </div>
             </div>
 
-            <div style={{ paddingTop: "1rem" }}>
+            <div style={{ paddingTop: "1rem", zIndex:"999" }}>
                 <WhatsAppButton />
             </div>
         </section>
