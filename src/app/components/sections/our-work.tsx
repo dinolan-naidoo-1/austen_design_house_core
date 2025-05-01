@@ -73,6 +73,88 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
         );
     };
 
+    // AR View Badge component for reuse
+    const ARViewBadge = () => (
+        <div
+            style={{
+                position: "absolute",
+                bottom: "8px",
+                right: "8px",
+                background: "rgba(0,0,0,0.6)",
+                color: "white",
+                padding: "4px 8px",
+                borderRadius: "4px",
+                fontSize: "0.7rem",
+                display: "flex",
+                alignItems: "center",
+                gap: "4px",
+            }}
+        >
+            <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z"
+                    stroke="white"
+                    strokeWidth="2"
+                />
+                <path
+                    d="M12 2V4"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                />
+                <path
+                    d="M12 20V22"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                />
+                <path
+                    d="M4 12H2"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                />
+                <path
+                    d="M22 12H20"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                />
+                <path
+                    d="M19.7781 4.22192L17.5561 6.44394"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                />
+                <path
+                    d="M6.44394 17.5561L4.22192 19.7781"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                />
+                <path
+                    d="M19.7781 19.7781L17.5561 17.5561"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                />
+                <path
+                    d="M6.44394 6.44394L4.22192 4.22192"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                />
+            </svg>
+            AR View
+        </div>
+    );
+
     return (
         <section
             id={id}
@@ -179,14 +261,14 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                     style={{
                         flex: "1",
                         minWidth: "300px",
-                        maxWidth: "calc(100% - 370px)", // Adjust based on video width + gap
+                        maxWidth: "calc(100% - 300px)", // Adjust based on video width + gap
                     }}
                 >
                     <div
                         style={{
                             display: "grid",
                             gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
-                            gap: "16px",
+                            gap: "50px",
                         }}
                     >
                         {/* First product with AR support */}
@@ -211,108 +293,44 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                                 }}
                             >
                                 <SafeImage
-                                    src="/clickable_image_1.png"
+                                    src="/ar-product-1.png"
                                     alt="AR Product 1 - View in AR"
                                     layout="fill"
                                     style={{ objectFit: "contain" }}
                                 />
-                                <div
-                                    style={{
-                                        position: "absolute",
-                                        bottom: "8px",
-                                        right: "8px",
-                                        background: "rgba(0,0,0,0.6)",
-                                        color: "white",
-                                        padding: "4px 8px",
-                                        borderRadius: "4px",
-                                        fontSize: "0.7rem",
-                                        display: "flex",
-                                        alignItems: "center",
-                                        gap: "4px",
-                                    }}
-                                >
-                                    <svg
-                                        width="16"
-                                        height="16"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z"
-                                            stroke="white"
-                                            strokeWidth="2"
-                                        />
-                                        <path
-                                            d="M12 2V4"
-                                            stroke="white"
-                                            strokeWidth="2"
-                                            strokeLinecap="round"
-                                        />
-                                        <path
-                                            d="M12 20V22"
-                                            stroke="white"
-                                            strokeWidth="2"
-                                            strokeLinecap="round"
-                                        />
-                                        <path
-                                            d="M4 12H2"
-                                            stroke="white"
-                                            strokeWidth="2"
-                                            strokeLinecap="round"
-                                        />
-                                        <path
-                                            d="M22 12H20"
-                                            stroke="white"
-                                            strokeWidth="2"
-                                            strokeLinecap="round"
-                                        />
-                                        <path
-                                            d="M19.7781 4.22192L17.5561 6.44394"
-                                            stroke="white"
-                                            strokeWidth="2"
-                                            strokeLinecap="round"
-                                        />
-                                        <path
-                                            d="M6.44394 17.5561L4.22192 19.7781"
-                                            stroke="white"
-                                            strokeWidth="2"
-                                            strokeLinecap="round"
-                                        />
-                                        <path
-                                            d="M19.7781 19.7781L17.5561 17.5561"
-                                            stroke="white"
-                                            strokeWidth="2"
-                                            strokeLinecap="round"
-                                        />
-                                        <path
-                                            d="M6.44394 6.44394L4.22192 4.22192"
-                                            stroke="white"
-                                            strokeWidth="2"
-                                            strokeLinecap="round"
-                                        />
-                                    </svg>
-                                    AR View
-                                </div>
+                                <ARViewBadge />
                             </a>
                         </div>
 
-                        {/* Second product */}
+                        {/* Second product - now with AR support */}
                         <div
                             style={{
+                                position: "relative",
+                                height: "200px",
                                 borderRadius: "8px",
                                 overflow: "hidden",
                                 boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+                                backgroundColor: "white",
                             }}
                         >
-                            <div style={{ position: "relative", height: "192px" }}>
+                            <a
+                                rel="ar"
+                                href="/interactive-product-2.usdz"
+                                style={{
+                                    display: "block",
+                                    height: "100%",
+                                    width: "100%",
+                                    position: "relative",
+                                }}
+                            >
                                 <SafeImage
-                                    src="/austen-logo-white.png" // Using a placeholder that exists
-                                    alt="AR Product 2"
+                                    src="/ar-product-2.png"
+                                    alt="AR Product 2 - View in AR"
                                     layout="fill"
                                     style={{ objectFit: "contain" }}
                                 />
-                            </div>
+                                <ARViewBadge />
+                            </a>
                             <div style={{ padding: "12px" }}>
                                 <h3
                                     style={{
@@ -335,23 +353,35 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                             </div>
                         </div>
 
-                        {/* Third product */}
+                        {/* Third product - now with AR support */}
                         <div
                             style={{
+                                position: "relative",
+                                height: "200px",
                                 borderRadius: "8px",
                                 overflow: "hidden",
                                 boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
                                 backgroundColor: "white",
                             }}
                         >
-                            <div style={{ position: "relative", height: "192px" }}>
+                            <a
+                                rel="ar"
+                                href="/gear-pump.usdz"
+                                style={{
+                                    display: "block",
+                                    height: "100%",
+                                    width: "100%",
+                                    position: "relative",
+                                }}
+                            >
                                 <SafeImage
-                                    src="/austen-logo-white.png" // Using a placeholder that exists
-                                    alt="AR Product 3"
+                                    src="/ar-product-3.png"
+                                    alt="AR Product 3 - View in AR"
                                     layout="fill"
                                     style={{ objectFit: "contain" }}
                                 />
-                            </div>
+                                <ARViewBadge />
+                            </a>
                             <div style={{ padding: "12px" }}>
                                 <h3
                                     style={{
@@ -378,19 +408,19 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                     {/* Apple AR Integration content */}
                     <div
                         style={{
-                            marginTop: "24px",
+                            marginTop: "10rem",
                             padding: "16px",
-                            backgroundColor: "white",
+                            backgroundColor: "#dcdcdc",
                             borderRadius: "8px",
-                            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
                         }}
                     >
                         <h2
                             style={{
-                                fontSize: "1.25rem",
+                                fontSize: "2.3rem",
                                 fontWeight: 600,
                                 marginBottom: "8px",
                                 fontFamily: "var(--font-quicksand)",
+                                padding: "3rem"
                             }}
                         >
                             Apple integration in Augmented Reality (AR) Environment
@@ -404,7 +434,7 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                             }}
                         >
                             <div
-                                style={{ width: "25%", height: "60px", position: "relative" }}
+                                style={{ width: "25%", height: "60px", position: "relative", padding: "1rem" }}
                             >
                                 {/* Instead of missing image, create a placeholder */}
                                 <div
@@ -426,6 +456,7 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                                     style={{
                                         color: "#4B5563",
                                         fontFamily: "var(--font-quicksand)",
+                                        fontSize: "2rem"
                                     }}
                                 >
                                     Apple Pay can now be integrated into the AR Quicklook
@@ -435,6 +466,63 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            {/* New section for second video and image - added content */}
+            <div
+                style={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    gap: "20px",
+                    width: "100%",
+                    padding: "2rem",
+                    marginTop: "1rem",
+                }}
+            >
+                {/* Featured image - now on the left */}
+                <div
+                    style={{
+                        flex: "1",
+                        minWidth: "300px",
+                        position: "relative",
+                        height: "40rem",
+                        borderRadius: "8px",
+                        overflow: "hidden",
+                        boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+                        backgroundColor: "white",
+                    }}
+                >
+                    <SafeImage
+                        src="/analytics-image.png"
+                        alt="Analytics"
+                        layout="fill"
+                        style={{ objectFit: "cover", height: "100%", width: "100%" }}
+                    />
+                </div>
+
+                {/* Second video - now on the right */}
+                <div
+                    style={{
+                        width: "350px",
+                        height: "40rem",
+                        overflow: "hidden",
+                        backgroundColor: "white",
+                        boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+                        borderRadius: "8px",
+                    }}
+                >
+                    <video
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                        poster="/austen-logo-white.png"
+                    >
+                        <source src="/advert-video.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
             </div>
 
