@@ -7,7 +7,7 @@ import WhatsAppButton from "../features/whatsapp-button";
 const HomeSection: React.FC<SectionProps> = ({ id }) => {
   return (
     <section id={id} className="section home-section">
-      <h1>Testing</h1>
+      <h1>Testingss</h1>
     </section>
   );
 };
