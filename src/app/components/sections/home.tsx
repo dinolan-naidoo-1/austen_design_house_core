@@ -150,8 +150,8 @@ const HomeSection: React.FC<SectionProps> = ({ id }) => {
                                     title="3D Model"
                                     frameBorder="0"
                                     allowFullScreen
-                                    mozallowfullscreen="true"
-                                    webkitallowfullscreen="true"
+                                 //   mozallowfullscreen="true"
+                                 //   webkitallowfullscreen="true"
                                     allow="autoplay; fullscreen; xr-spatial-tracking"
                                     xr-spatial-tracking="true"
                                     execution-while-out-of-viewport="true"
