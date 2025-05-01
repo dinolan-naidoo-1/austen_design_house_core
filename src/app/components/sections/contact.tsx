@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { SectionProps } from '../../types';
 import WhatsAppButton from "@/app/components/features/whatsapp-button";
-import {sendEmail} from "../../../utilities/resend";
+import {sendEmail} from "@/utilities/resend";
 
 
 const ContactSection: React.FC<SectionProps> = ({ id }) => {

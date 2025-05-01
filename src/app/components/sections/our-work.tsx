@@ -1,235 +1,299 @@
-import React from 'react';
-import { SectionProps } from '../../types';
+"use-client";
+
+import React from "react";
+
+import { SectionProps } from "../../types";
 import WhatsAppButton from "@/app/components/features/whatsapp-button";
+import Image from "next/image";
 
 const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
-    // @ts-ignore
-    return (
-        <section id={id} className="section our-work-section" style={{
-            minHeight: '135vh',
-            paddingTop: '3rem',
-            overflow: 'hidden', // Prevent any potential overflow issues
-            backgroundColor: '#dcdcdc',
-            position: 'relative', // Important for absolute positioning of fade effects
-        }}>
-            {/* Top fade effect overlay */}
-            <div style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '80px',
-                background: 'linear-gradient(to bottom, white, rgba(255, 255, 255, 0))',
-                zIndex: 1,
-            }}></div>
+  // @ts-ignore
+  return (
+    <section
+      id={id}
+      className="section our-work-section"
+      style={{
+        minHeight: "135vh",
+        paddingTop: "3rem",
+        overflow: "hidden", // Prevent any potential overflow issues
+        backgroundColor: "#dcdcdc",
+        position: "relative", // Important for absolute positioning of fade effects
+      }}
+    >
+      {/* Top fade effect overlay */}
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "80px",
+          background:
+            "linear-gradient(to bottom, white, rgba(255, 255, 255, 0))",
+          zIndex: 1,
+        }}
+      ></div>
+      {/* Bottom fade effect overlay */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          width: "100%",
+          height: "80px",
+          background: "linear-gradient(to top, white, rgba(255, 255, 255, 0))",
+          zIndex: 1,
+        }}
+      ></div>
+      <h1
+        style={{
+          textAlign: "center",
+          fontSize: "2.7rem",
+          fontFamily: "var(--font-quicksand)",
+          marginBottom: "2rem",
+        }}
+      >
+        Our Work
+      </h1>
 
-            {/* Bottom fade effect overlay */}
-            <div style={{
-                position: 'absolute',
-                bottom: 0,
-                left: 0,
-                width: '100%',
-                height: '80px',
-                background: 'linear-gradient(to top, white, rgba(255, 255, 255, 0))',
-                zIndex: 1,
-            }}></div>
-            <h1 style={{
-                textAlign: 'center',
-                fontSize: '2.7rem',
-                fontFamily: 'var(--font-quicksand)',
-                marginBottom: '2rem'
-            }}>
-                Our Work
-            </h1>
-
-            <div style={{
-                display: 'flex',
-                flexDirection: 'row',
-                flexWrap: 'wrap',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                width: '100%',
-                padding: '0 2rem'
-            }}>
-                {/* Sketchfab Models Container on Left */}
-                <div style={{
-                    flex: '1 1 50%',
-                    minWidth: '300px',
-                    marginBottom: '2rem',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '2rem'
-                }}>
-                    {/* First Sketchfab Model */}
-                    <div className="sketchfab-container" style={{
-                        width: '100%',
-                        height: '300px'
-                    }}>
-                        <div className="sketchfab-embed-wrapper" style={{ height: '100%' }}>
-                            <iframe
-                                title="GOBP20"
-                                frameBorder="0"
-                                allowFullScreen
-                                // @ts-ignore
-                                mozallowfullscreen="true"
-                                webkitallowfullscreen="true"
-                                allow="autoplay; fullscreen; xr-spatial-tracking"
-                                xr-spatial-tracking
-                                execution-while-out-of-viewport
-                                execution-while-not-rendered
-                                web-share
-                                src="https://sketchfab.com/models/fce19fd9c12b4f2a907f0084c5daed31/embed?autostart=1&transparent=1"
-                                style={{
-                                    width: '100%',
-                                    height: '100%',
-                                    border: 'none'
-                                }}
-                            />
-                            <p style={{
-                                fontSize: '13px',
-                                fontWeight: 'normal',
-                                margin: '5px',
-                                color: '#4A4A4A'
-                            }}>
-                                <a href="https://sketchfab.com/3d-models/gobp20-fce19fd9c12b4f2a907f0084c5daed31?utm_medium=embed&utm_campaign=share-popup&utm_content=fce19fd9c12b4f2a907f0084c5daed31"
-                                   target="_blank"
-                                   rel="nofollow"
-                                   style={{ fontWeight: 'bold', color: '#1CAAD9' }}
-                                >
-                                    GOBP20
-                                </a> by
-                                <a href="https://sketchfab.com/albertsitoeus?utm_medium=embed&utm_campaign=share-popup&utm_content=fce19fd9c12b4f2a907f0084c5daed31"
-                                   target="_blank"
-                                   rel="nofollow"
-                                   style={{ fontWeight: 'bold', color: '#1CAAD9' }}
-                                >
-                                    albertsitoeus
-                                </a> on
-                                <a href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=fce19fd9c12b4f2a907f0084c5daed31"
-                                   target="_blank"
-                                   rel="nofollow"
-                                   style={{ fontWeight: 'bold', color: '#1CAAD9' }}
-                                >
-                                    Sketchfab
-                                </a>
-                            </p>
-                        </div>
-                    </div>
-
-                    Second Sketchfab Model
-                    <div className="sketchfab-container" style={{
-                        width: '100%',
-                        height: '300px'
-                    }}>
-                        <div className="sketchfab-embed-wrapper" style={{ height: '100%' }}>
-                            <iframe
-                                title="AUSTEN DESIGN HOUSE - B"
-                                frameBorder="0"
-                                allowFullScreen
-                                // @ts-ignore
-                                mozallowfullscreen="true"
-                                webkitallowfullscreen="true"
-                                allow="autoplay; fullscreen; xr-spatial-tracking"
-                                xr-spatial-tracking
-                                execution-while-out-of-viewport
-                                execution-while-not-rendered
-                                web-share
-                                src="https://sketchfab.com/models/24d86062538148d6aaab8e3d83cb7d59/embed?autostart=1&transparent=1"
-                                style={{
-                                    width: '100%',
-                                    height: '100%',
-                                    border: 'none'
-                                }}
-                            />
-                            <p style={{
-                                fontSize: '13px',
-                                fontWeight: 'normal',
-                                margin: '5px',
-                                color: '#4A4A4A'
-                            }}>
-                                <a href="https://sketchfab.com/3d-models/austen-design-house-b-24d86062538148d6aaab8e3d83cb7d59?utm_medium=embed&utm_campaign=share-popup&utm_content=24d86062538148d6aaab8e3d83cb7d59"
-                                   target="_blank"
-                                   rel="nofollow"
-                                   style={{ fontWeight: 'bold', color: '#1CAAD9' }}
-                                >
-                                    AUSTEN DESIGN HOUSE - B
-                                </a> by
-                                <a href="https://sketchfab.com/albertsitoeus?utm_medium=embed&utm_campaign=share-popup&utm_content=24d86062538148d6aaab8e3d83cb7d59"
-                                   target="_blank"
-                                   rel="nofollow"
-                                   style={{ fontWeight: 'bold', color: '#1CAAD9' }}
-                                >
-                                    albertsitoeus
-                                </a> on
-                                <a href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=24d86062538148d6aaab8e3d83cb7d59"
-                                   target="_blank"
-                                   rel="nofollow"
-                                   style={{ fontWeight: 'bold', color: '#1CAAD9' }}
-                                >
-                                    Sketchfab
-                                </a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                {/*               <div style={{
-                    marginTop: '2rem',
-                    width: '100%',
-                    borderRadius: '8px',
-                    overflow: 'hidden',
-                    boxShadow: '0 4px 8px rgba(0,0,0,0.1)'
-                }}>
-                    <video
-                        width="20%"
-                        height="auto"
-                        controls
-                        autoPlay={false}
-                        preload="auto"
-                        style={{
-                            display: 'block',
-                            borderRadius: '8px'
-                        }}
-                    >
-                        <source src="/video1.mp4" type="video/mp4" />
-                        Your browser does not support the video tag.
-                    </video>
-                </div>*/}
-
-                {/* Text Content on Right */}
-                <div style={{
-                    flex: '1 1 40%',
-                    minWidth: '300px',
-                    paddingLeft: '2rem'
-                }}>
-                    <p style={{
-                        textAlign: 'left',
-                        fontSize: '1.6rem',
-                        color: "#363636",
-                        fontFamily: 'var(--font-quicksand)'
-                    }}>
-                        71% increase in conversion rates<br/>
-                        28% decrease in product returns<br/>
-                        78% of customers prefer to shop in 3D
-                    </p>
-
-                    <div style={{
-                        marginTop: '2rem'
-                    }}>
-
-                    </div>
-                </div>
-            </div>
-
-            <div
-                style={{
-                    paddingTop:"1rem"
-                }}
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "20px",
+          width: "100%",
+          padding: "2rem",
+        }}
+      >
+        {/* Video on the left */}
+        <div
+          style={{
+            width: "350px",
+            height: "600px",
+            overflow: "hidden",
+            marginLeft: 8,
+            backgroundColor: "white",
+            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+            borderRadius: "8px",
+          }}
+        >
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            style={{ width: "100%", height: "350px", objectFit: "cover" }}
+            poster="/austen-logo-white.png"
+          >
+            <source src="/shoe-video.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <div style={{ padding: "16px" }}>
+            <h3
+              style={{
+                fontSize: "1.25rem",
+                fontWeight: 600,
+                marginBottom: "0.5rem",
+                fontFamily: "var(--font-quicksand)",
+              }}
             >
-                <WhatsAppButton />
+              AR Shopping Experience
+            </h3>
+            <p
+              style={{ color: "#4B5563", fontFamily: "var(--font-quicksand)" }}
+            >
+              Sell directly from AR. Customers can now buy your products
+              straight from your AR product display in the Quicklook environment
+              using Apple Pay.
+            </p>
+          </div>
+        </div>
+
+        {/* Three images on the right */}
+        <div
+          style={{
+            flex: "1",
+            minWidth: "300px",
+            maxWidth: "calc(100% - 370px)", // Adjust based on video width + gap
+          }}
+        >
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+              gap: "16px",
+            }}
+          >
+            {/* First product */}
+            <div
+              style={{
+                position: "relative",
+                height: "auto",
+                borderRadius: "8px",
+                overflow: "hidden",
+                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+              }}
+            >
+              <Image
+                src="/clickable_image_1.png"
+                alt="AR Product 1"
+                fill
+                style={{ objectFit: "contain" }}
+              />
             </div>
-        </section>
-    );
+
+            {/* Second product */}
+            <div
+              style={{
+                borderRadius: "8px",
+                overflow: "hidden",
+                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+              }}
+            >
+              <div style={{ position: "relative", height: "192px" }}>
+                <Image
+                  src="/path-to-second-image.jpg"
+                  alt="AR Product 2"
+                  fill
+                  style={{ objectFit: "contain" }}
+                />
+                <div style={{ position: "absolute", top: "8px", right: "8px" }}>
+                  <Image
+                    src="/path-to-3d-icon.svg"
+                    alt="3D"
+                    width={24}
+                    height={24}
+                  />
+                </div>
+              </div>
+              <div style={{ padding: "12px" }}>
+                <h3
+                  style={{
+                    fontSize: "0.875rem",
+                    fontWeight: 500,
+                    fontFamily: "var(--font-quicksand)",
+                  }}
+                >
+                  Modern Chair
+                </h3>
+                <p
+                  style={{
+                    fontSize: "0.75rem",
+                    color: "#6B7280",
+                    fontFamily: "var(--font-quicksand)",
+                  }}
+                >
+                  3D AR Model
+                </p>
+              </div>
+            </div>
+
+            {/* Third product */}
+            <div
+              style={{
+                borderRadius: "8px",
+                overflow: "hidden",
+                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+                backgroundColor: "white",
+              }}
+            >
+              <div style={{ position: "relative", height: "192px" }}>
+                <Image
+                  src="/path-to-third-image.jpg"
+                  alt="AR Product 3"
+                  fill
+                  style={{ objectFit: "contain" }}
+                />
+                <div style={{ position: "absolute", top: "8px", right: "8px" }}>
+                  <Image
+                    src="/path-to-3d-icon.svg"
+                    alt="3D"
+                    width={24}
+                    height={24}
+                  />
+                </div>
+              </div>
+              <div style={{ padding: "12px" }}>
+                <h3
+                  style={{
+                    fontSize: "0.875rem",
+                    fontWeight: 500,
+                    fontFamily: "var(--font-quicksand)",
+                  }}
+                >
+                  Orange Fridge
+                </h3>
+                <p
+                  style={{
+                    fontSize: "0.75rem",
+                    color: "#6B7280",
+                    fontFamily: "var(--font-quicksand)",
+                  }}
+                >
+                  3D AR Model
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Apple AR Integration content */}
+          <div
+            style={{
+              marginTop: "24px",
+              padding: "16px",
+              backgroundColor: "white",
+              borderRadius: "8px",
+              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            <h2
+              style={{
+                fontSize: "1.25rem",
+                fontWeight: 600,
+                marginBottom: "8px",
+                fontFamily: "var(--font-quicksand)",
+              }}
+            >
+              Apple integration in Augmented Reality (AR) Environment
+            </h2>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                gap: "16px",
+              }}
+            >
+              <div style={{ width: "25%" }}>
+                <Image
+                  src="/path-to-apple-pay-logo.svg"
+                  alt="Apple Pay"
+                  width={150}
+                  height={60}
+                />
+              </div>
+              <div style={{ width: "75%" }}>
+                <p
+                  style={{
+                    color: "#4B5563",
+                    fontFamily: "var(--font-quicksand)",
+                  }}
+                >
+                  Apple Pay can now be integrated into the AR Quicklook
+                  environment so customers can make purchases from your website
+                  while interacting with your 3D product model.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style={{ paddingTop: "1rem" }}>
+        <WhatsAppButton />
+      </div>
+    </section>
+  );
 };
 
 export default OurWorksSection;
