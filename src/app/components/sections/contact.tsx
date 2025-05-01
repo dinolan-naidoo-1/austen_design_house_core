@@ -255,7 +255,14 @@ const ContactSection: React.FC<SectionProps> = ({ id }) => {
 
               {/* Interest */}
               <div style={{ marginBottom: "1rem" }}>
+                <label
+                  htmlFor="interest-select"
+                  style={{ display: "block", marginBottom: "0.5rem" }}
+                >
+                  I'm interested in*
+                </label>
                 <select
+                  id="interest-select"
                   name="interestedIn"
                   value={formData.interestedIn}
                   onChange={handleChange}
@@ -270,7 +277,7 @@ const ContactSection: React.FC<SectionProps> = ({ id }) => {
                   }}
                 >
                   <option value="" disabled>
-                    I'm interested in*
+                    Select an option
                   </option>
                   <option value="3D Product Visualization">
                     3D Product Visualization
