@@ -1,12 +1,5 @@
-import type { Metadata } from "next";
+import Navbar from "./components/navbar";
 import "./globals.css";
-
-// This is the correct way to set metadata in Next.js App Router
-export const metadata: Metadata = {
-  title: "Austen Design House",
-  description: "Austen Design House",
-  viewport: "width=device-width, initial-scale=1.0, maximum-scale=1.0",
-};
 
 export default function RootLayout({
   children,
@@ -15,7 +8,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+
+        />
+        <title>Austen Design House</title>
+      </head>
+      <body>
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 }
