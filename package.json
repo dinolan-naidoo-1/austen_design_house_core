@@ -3,29 +3,27 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "@react-three/drei": "^10.0.4",
-    "@react-three/fiber": "^9.1.0",
-    "next": "15.2.2",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "resend": "^4.2.0",
-    "three": "^0.174.0"
+    "@react-three/drei": "^9.80.4",
+    "@react-three/fiber": "^8.13.6",
+    "next": "^14.2.28",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "resend": "^2.0.0",
+    "three": "^0.155.0"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "15.2.2",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "@types/node": "^20.10.0",
+    "@types/react": "^18.2.38",
+    "@types/react-dom": "^18.2.15",
+    "eslint": "^8.54.0",
+    "eslint-config-next": "14.0.4",
+    "tailwindcss": "^3.3.5",
+    "typescript": "^5.2.2"
   }
 }
