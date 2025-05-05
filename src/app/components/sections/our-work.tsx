@@ -213,6 +213,8 @@ const ApplePayButton = () => {
     );
 };
 
+
+
 const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
     const [isARSupported, setIsARSupported] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
@@ -326,6 +328,55 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
             )}
         </div>
     );
+
+    const ARAutoTrigger = () => {
+        const [hasTriggered, setHasTriggered] = useState(false);
+
+        useEffect(() => {
+            if (!hasTriggered) {
+                // Automatically trigger AR on component mount
+                const arLink = document.createElement('a');
+                arLink.rel = 'ar';
+                arLink.href = '/gear-pump.usdz';
+                arLink.style.display = 'none';
+                document.body.appendChild(arLink);
+
+                // Short delay to ensure the link is in the DOM
+                setTimeout(() => {
+                    arLink.click();
+                    document.body.removeChild(arLink);
+                }, 100);
+
+                setHasTriggered(true);
+            }
+        }, [hasTriggered]);
+
+        return (
+            <div style={{
+                height: '100%',
+                width: '100%',
+                position: 'relative',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexDirection: 'column',
+                gap: '10px',
+            }}>
+                <svg width="50" height="50" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z" stroke="#333" strokeWidth="2"/>
+                    <path d="M12 8V12L15 13.5" stroke="#333" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
+                <p style={{
+                    fontFamily: 'var(--font-quicksand)',
+                    color: '#333',
+                    textAlign: 'center'
+                }}>
+                    Launching AR...
+                </p>
+                <ARViewBadge />
+            </div>
+        );
+    };
 
     return (
         <section
@@ -525,24 +576,7 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                             }}
                         >
                             {isARSupported ? (
-                                <a
-                                    rel="ar"
-                                    href="/gear-pump.usdz"
-                                    style={{
-                                        display: "block",
-                                        height: "100%",
-                                        width: "100%",
-                                        position: "relative",
-                                    }}
-                                >
-                                    <SafeImage
-                                        src="/ar-product-1.png"
-                                        alt="AR Product 1 - View in AR"
-                                        layout="fill"
-                                        style={{ objectFit: "contain" }}
-                                    />
-                                    <ARViewBadge />
-                                </a>
+                                <ARAutoTrigger />
                             ) : (
                                 <div
                                     onClick={() => setImageModal('/ar-product-1.png')}
