@@ -609,7 +609,7 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                         style={{
                             marginTop: "clamp(2rem, 2.5vw, 20rem)",
                             padding: "16px",
-                            backgroundColor: "#dcdcdc",
+                            backgroundColor: "#f7f5f5",
                             borderRadius: "8px",
                         }}
                     >

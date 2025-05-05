@@ -271,7 +271,11 @@ body {
   .nav-items {
     width: min(150px, 50vw); /* Wider on smaller screens */
   }
+  .logo {
+    margin-left: 10px; /* Move logo to the right */
+  }
 }
+
 
 /* Media query for mobile phones */
 @media (max-width: 480px) {
@@ -279,6 +283,10 @@ body {
     padding: 0.75rem 3%; /* Further reduced padding */
     border-bottom-left-radius: 2rem; /* Smaller radius for mobile */
     border-bottom-right-radius: 2rem; /* Smaller radius for mobile */
+  }
+
+  .logo {
+    margin-left: 10px; /* Move logo to the right */
   }
 
   .nav-logo {
