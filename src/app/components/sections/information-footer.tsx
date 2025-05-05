@@ -62,7 +62,7 @@ const InformationFooter: React.FC<SectionProps> = ({ id }) => {
                                 if (confirm('Open Terms Of Service')) {
                                     handlePdfClick('/Terms of Service ADH.pdf');
                                 }
-                            }}>Terms of service</a>
+                            }}>Terms of Service</a>
                         </div>
                     </div>
                 </div>

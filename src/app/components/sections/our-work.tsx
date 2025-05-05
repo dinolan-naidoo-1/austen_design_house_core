@@ -188,6 +188,8 @@ const ImmersiveEcommerceStats = () => {
 
 
 
+
+
 const ApplePayButton = () => {
     return (
         <div
@@ -215,7 +217,6 @@ const ApplePayButton = () => {
     );
 };
 
-const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
     // Safe image component with error handling
     const SafeImage: React.FC<SafeImageProps> = ({
                                                      src,
@@ -355,6 +356,165 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
         </div>
     );
 
+const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
+    // Screen size detection
+    const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (typeof window !== 'undefined') {
+                setWindowWidth(window.innerWidth);
+            }
+        };
+
+        if (typeof window !== 'undefined') {
+            window.addEventListener('resize', handleResize);
+            return () => window.removeEventListener('resize', handleResize);
+        }
+    }, []);
+
+    // Define breakpoint for mobile vs desktop layout
+    const isMobile = windowWidth < 768;
+
+    // AR View Badge component for reuse
+    const ARViewBadge = () => (
+        <div
+            style={{
+                position: "absolute",
+                bottom: "8px",
+                right: "8px",
+                background: "rgba(0,0,0,0.6)",
+                color: "white",
+                padding: "4px 8px",
+                borderRadius: "4px",
+                fontSize: "0.7rem",
+                display: "flex",
+                alignItems: "center",
+                gap: "4px",
+            }}
+        >
+            <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z"
+                    stroke="white"
+                    strokeWidth="2"
+                />
+                <path
+                    d="M12 2V4"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                />
+                <path
+                    d="M12 20V22"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                />
+                <path
+                    d="M4 12H2"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                />
+                <path
+                    d="M22 12H20"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                />
+                <path
+                    d="M19.7781 4.22192L17.5561 6.44394"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                />
+                <path
+                    d="M6.44394 17.5561L4.22192 19.7781"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                />
+                <path
+                    d="M19.7781 19.7781L17.5561 17.5561"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                />
+                <path
+                    d="M6.44394 6.44394L4.22192 4.22192"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                />
+            </svg>
+            AR View for iOS
+        </div>
+    );
+
+    // Safe image component with error handling
+    const SafeImage: React.FC<SafeImageProps> = ({
+                                                     src,
+                                                     alt,
+                                                     width,
+                                                     height,
+                                                     style = {},
+                                                     layout,
+                                                 }) => {
+        const [error, setError] = useState(false);
+
+        if (error) {
+            return (
+                <div
+                    style={{
+                        backgroundColor: "#f0f0f0",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        width: width ? `${width}px` : "100%",
+                        height: height ? `${height}px` : "100%",
+                        ...style,
+                    }}
+                >
+                    <p style={{ color: "#666", fontSize: "0.8rem" }}>{alt}</p>
+                </div>
+            );
+        }
+
+        // For fill layout
+        if (layout === "fill") {
+            return (
+                <div style={{ position: "relative", width: "100%", height: "100%" }}>
+                    <Image
+                        src={src}
+                        alt={alt}
+                        fill
+                        style={style}
+                        onError={() => setError(true)}
+                    />
+                </div>
+            );
+        }
+
+        // For fixed dimensions
+        return (
+            <Image
+                src={src}
+                alt={alt}
+                width={width || 100}
+                height={height || 100}
+                style={style}
+                onError={() => setError(true)}
+            />
+        );
+    };
+
     return (
         <section
             id={id}
@@ -362,9 +522,9 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
             style={{
                 minHeight: "135vh",
                 paddingTop: "3rem",
-                overflow: "hidden", // Prevent any potential overflow issues
+                overflow: "hidden",
                 backgroundColor: "#dcdcdc",
-                position: "relative", // Important for absolute positioning of fade effects
+                position: "relative",
             }}
         >
             {/* Top fade effect overlay */}
@@ -375,11 +535,11 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                     left: 0,
                     width: "100%",
                     height: "80px",
-                    background:
-                        "linear-gradient(to bottom, white, rgba(255, 255, 255, 0))",
+                    background: "linear-gradient(to bottom, white, rgba(255, 255, 255, 0))",
                     zIndex: 1,
                 }}
             ></div>
+
             {/* Bottom fade effect overlay */}
             <div
                 style={{
@@ -392,6 +552,7 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                     zIndex: 1,
                 }}
             ></div>
+
             <h1
                 style={{
                     textAlign: "center",
@@ -406,19 +567,22 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
             <div
                 style={{
                     display: "flex",
+                    flexDirection: isMobile ? "column" : "row",
+                    alignItems: isMobile ? "center" : "flex-start",
                     flexWrap: "wrap",
                     gap: "20px",
                     width: "100%",
                     padding: "2rem",
                 }}
             >
-                {/* Video on the left */}
+                {/* Video on the left/top - now centered on mobile */}
                 <div
                     style={{
                         width: "350px",
                         height: "100%",
                         overflow: "hidden",
-                        marginLeft: 8,
+                        marginLeft: isMobile ? 0 : 8,
+                        marginBottom: isMobile? '2.8rem': 0,
                         backgroundColor: "white",
                         boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
                         borderRadius: "8px",
@@ -440,14 +604,19 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                             style={{
                                 fontSize: "1.25rem",
                                 fontWeight: 600,
-                                marginBottom: "0.5rem",
+                                marginBottom: "0.6rem",
                                 fontFamily: "var(--font-quicksand)",
+                                textAlign: isMobile ? "center" : "left",
                             }}
                         >
                             AR Shopping Experience
                         </h3>
                         <p
-                            style={{ color: "#4B5563", fontFamily: "var(--font-quicksand)" }}
+                            style={{
+                                color: "#4B5563",
+                                fontFamily: "var(--font-quicksand)",
+                                textAlign: isMobile ? "center" : "left",
+                            }}
                         >
                             Sell directly from AR. Customers can now buy your products
                             straight from your AR product display in the Quicklook environment
@@ -456,19 +625,29 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                     </div>
                 </div>
 
-                {/* Three images on the right */}
+                {/* Three images on the right/bottom */}
                 <div
                     style={{
-                        flex: "1",
-                        minWidth: "300px",
-                        maxWidth: "calc(100% - 300px)", // Adjust based on video width + gap
+                        flex: isMobile ? "none" : "1",
+                        minWidth: isMobile ? "100%" : "300px",
+                        maxWidth: isMobile ? "100%" : "calc(100% - 300px)",
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: isMobile ? "center" : "flex-start"
                     }}
                 >
+                    {/* Product grid with conditional styling */}
                     <div
                         style={{
-                            display: "grid",
-                            gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+                            display: isMobile ? "flex" : "grid",
+                            gridTemplateColumns: isMobile ? undefined : "repeat(auto-fit, minmax(180px, 1fr))",
+                            flexDirection: isMobile ? "column" : undefined,
                             gap: "50px",
+                            width: "100%",
+                            ...(isMobile && {
+                                maxWidth: "350px",
+                                alignItems: "center"
+                            })
                         }}
                     >
                         {/* First product with AR support */}
@@ -476,10 +655,11 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                             style={{
                                 position: "relative",
                                 height: "200px",
+                                width: isMobile ? "100%" : "auto",
                                 borderRadius: "8px",
                                 overflow: "hidden",
                                 boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-                                backgroundColor: "white",
+                                backgroundColor: "white"
                             }}
                         >
                             <a
@@ -502,15 +682,16 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                             </a>
                         </div>
 
-                        {/* Second product - now with AR support */}
+                        {/* Second product with AR support */}
                         <div
                             style={{
                                 position: "relative",
                                 height: "200px",
+                                width: isMobile ? "100%" : "auto",
                                 borderRadius: "8px",
                                 overflow: "hidden",
                                 boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-                                backgroundColor: "white",
+                                backgroundColor: "white"
                             }}
                         >
                             <a
@@ -537,6 +718,7 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                                         fontSize: "0.875rem",
                                         fontWeight: 500,
                                         fontFamily: "var(--font-quicksand)",
+                                        textAlign: isMobile ? "center" : "left",
                                     }}
                                 >
                                     Modern Chair
@@ -546,6 +728,7 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                                         fontSize: "0.75rem",
                                         color: "#6B7280",
                                         fontFamily: "var(--font-quicksand)",
+                                        textAlign: isMobile ? "center" : "left",
                                     }}
                                 >
                                     3D AR Model
@@ -553,15 +736,16 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                             </div>
                         </div>
 
-                        {/* Third product - now with AR support */}
+                        {/* Third product with AR support */}
                         <div
                             style={{
                                 position: "relative",
                                 height: "200px",
+                                width: isMobile ? "100%" : "auto",
                                 borderRadius: "8px",
                                 overflow: "hidden",
                                 boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-                                backgroundColor: "white",
+                                backgroundColor: "white"
                             }}
                         >
                             <a
@@ -588,6 +772,7 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                                         fontSize: "0.875rem",
                                         fontWeight: 500,
                                         fontFamily: "var(--font-quicksand)",
+                                        textAlign: isMobile ? "center" : "left",
                                     }}
                                 >
                                     Orange Fridge
@@ -597,6 +782,7 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                                         fontSize: "0.75rem",
                                         color: "#6B7280",
                                         fontFamily: "var(--font-quicksand)",
+                                        textAlign: isMobile ? "center" : "left",
                                     }}
                                 >
                                     3D AR Model
@@ -605,21 +791,30 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                         </div>
                     </div>
 
+                    {/* Apple integration section with conditional styling */}
                     <div
                         style={{
                             marginTop: "clamp(2rem, 2.5vw, 20rem)",
                             padding: "16px",
                             backgroundColor: "#f7f5f5",
                             borderRadius: "8px",
+                            ...(isMobile && {
+                                width: "100%",
+                                maxWidth: "350px",
+                                display: "flex",
+                                flexDirection: "column",
+                                alignItems: "center"
+                            })
                         }}
                     >
                         <h2
                             style={{
-                                fontSize: "clamp(1.8rem, 2.5vw, 2.3rem)",
+                                fontSize: "clamp(1.5rem, 2.5vw, 2.3rem)",
                                 fontWeight: 600,
                                 marginBottom: "8px",
                                 fontFamily: "var(--font-quicksand)",
-                                padding: "3rem",
+                                padding: isMobile ? "1rem 0" : "3rem",
+                                textAlign: isMobile ? "center" : "left"
                             }}
                         >
                             Apple integration in Augmented Reality (AR) Environment
@@ -628,37 +823,43 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                         <div
                             style={{
                                 display: "flex",
-                                flexDirection: "row",
-                                alignItems: "center",
+                                flexDirection: isMobile ? "column" : "row",
+                                alignItems: isMobile ? "center" : "flex-start",
                                 gap: "5px",
-                                flexWrap: "wrap",
-                                justifyContent: "center", // centers children on small screens
+                                flexWrap: isMobile ? "nowrap" : "wrap",
+                                justifyContent: isMobile ? "center" : "flex-start",
+                                width: "100%"
                             }}
                         >
                             <div
                                 style={{
-                                    flex: "1 1 200px",
+                                    flex: isMobile ? "auto" : "1 1 200px",
+                                    width: isMobile ? "100%" : "auto",
                                     maxWidth: "100%",
-                                    minWidth: "150px",
-                                    paddingLeft: "2rem",
+                                    minWidth: isMobile ? "auto" : "150px",
+                                    paddingLeft: isMobile ? "0" : "2rem",
                                     height: "60px",
                                     position: "relative",
+                                    display: "flex",
+                                    justifyContent: isMobile ? "center" : "flex-start"
                                 }}
                             >
                                 <ApplePayButton />
                             </div>
                             <div
                                 style={{
-                                    flex: "2 1 300px",
+                                    flex: isMobile ? "auto" : "2 1 300px",
+                                    width: isMobile ? "100%" : "auto",
                                     maxWidth: "100%",
-                                    paddingRight: "2rem",
+                                    paddingRight: isMobile ? "0" : "2rem",
+                                    textAlign: isMobile ? "center" : "left"
                                 }}
                             >
                                 <p
                                     style={{
                                         color: "#4B5563",
                                         fontFamily: "var(--font-quicksand)",
-                                        fontSize: "clamp(1.3rem, 2vw, 2rem)",
+                                        fontSize: "clamp(1rem, 2vw, 2rem)",
                                     }}
                                 >
                                     Apple Pay can now be integrated into the AR Quicklook environment so
@@ -675,6 +876,8 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
             <div
                 style={{
                     display: "flex",
+                    flexDirection: isMobile ? "column" : "row",
+                    alignItems: isMobile ? "center" : "flex-start",
                     flexWrap: "wrap",
                     gap: "20px",
                     width: "100%",
@@ -685,8 +888,9 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                 {/* Analytics section */}
                 <div
                     style={{
-                        flex: "1",
+                        flex: isMobile ? "none" : "1",
                         minWidth: "300px",
+                        maxWidth: isMobile ? "350px" : "auto",
                         position: "relative",
                         borderRadius: "8px",
                         overflow: "hidden",
@@ -696,10 +900,10 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                     <ImmersiveEcommerceStats />
                 </div>
 
-                {/* Second video - now on the right */}
+                {/* Second video - centered on mobile */}
                 <div
                     style={{
-                        width: "400px",
+                        width: isMobile ? "350px" : "400px",
                         height: "auto",
                         overflow: "hidden",
                         backgroundColor: "white",
@@ -721,7 +925,15 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                 </div>
             </div>
 
-            <div style={{ paddingTop: "1rem", zIndex:"999" }}>
+            <div
+                style={{
+                    paddingTop: "1rem",
+                    zIndex: "999",
+                    display: "flex",
+                    justifyContent: isMobile ? "center" : "flex-start",
+                    width: "100%"
+                }}
+            >
                 <WhatsAppButton />
             </div>
         </section>
