@@ -151,7 +151,7 @@ const ImmersiveEcommerceStats = () => {
                 <div style={circleStyle}>
                     <div style={{
                         ...orangeCircleStyle,
-                        clipPath: 'polygon(50% 50%, 100% 0, 100% 100%, 0 100%, 0 0, 100% 0)' as any
+                        clipPath: 'polygon(50% 50%, 100% 0, 100% 100%, 0 100%, 0 0, 100% 0, 30% 0)' as any
                     }}></div>
                     <div style={innerCircleStyle}>
                         <span style={percentStyle}>94%</span>
@@ -186,6 +186,8 @@ const ImmersiveEcommerceStats = () => {
     );
 };
 
+
+
 const ApplePayButton = () => {
     return (
         <div
@@ -213,25 +215,7 @@ const ApplePayButton = () => {
     );
 };
 
-
-
 const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
-    const [isARSupported, setIsARSupported] = useState(false);
-    const [isMobile, setIsMobile] = useState(false);
-    const [imageModal, setImageModal] = useState<string | null>(null);
-
-    useEffect(() => {
-        // Detect AR support (iOS with Safari)
-        const detectAR = () => {
-            const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
-            const isSafari = /Safari/.test(navigator.userAgent);
-            setIsARSupported(isIOS && isSafari);
-            setIsMobile(/iPhone|iPad|iPod|Android/.test(navigator.userAgent));
-        };
-
-        detectAR();
-    }, []);
-
     // Safe image component with error handling
     const SafeImage: React.FC<SafeImageProps> = ({
                                                      src,
@@ -306,77 +290,70 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                 gap: "4px",
             }}
         >
-            {isARSupported ? (
-                <>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                        <path d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z" stroke="white" strokeWidth="2"/>
-                        <path d="M12 2V4" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                        <path d="M12 20V22" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                        <path d="M4 12H2" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                        <path d="M22 12H20" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                        <path d="M19.7781 4.22192L17.5561 6.44394" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                        <path d="M6.44394 17.5561L4.22192 19.7781" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                        <path d="M19.7781 19.7781L17.5561 17.5561" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                        <path d="M6.44394 6.44394L4.22192 4.22192" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                    </svg>
-                    AR View for iOS
-                </>
-            ) : isMobile ? (
-                "📱 Tap to view"
-            ) : (
-                "🖥️ Click to view"
-            )}
+            <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z"
+                    stroke="white"
+                    strokeWidth="2"
+                />
+                <path
+                    d="M12 2V4"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                />
+                <path
+                    d="M12 20V22"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                />
+                <path
+                    d="M4 12H2"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                />
+                <path
+                    d="M22 12H20"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                />
+                <path
+                    d="M19.7781 4.22192L17.5561 6.44394"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                />
+                <path
+                    d="M6.44394 17.5561L4.22192 19.7781"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                />
+                <path
+                    d="M19.7781 19.7781L17.5561 17.5561"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                />
+                <path
+                    d="M6.44394 6.44394L4.22192 4.22192"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                />
+            </svg>
+            AR View for iOS
         </div>
     );
-
-    const ARAutoTrigger = () => {
-        const [hasTriggered, setHasTriggered] = useState(false);
-
-        useEffect(() => {
-            if (!hasTriggered) {
-                // Automatically trigger AR on component mount
-                const arLink = document.createElement('a');
-                arLink.rel = 'ar';
-                arLink.href = '/gear-pump.usdz';
-                arLink.style.display = 'none';
-                document.body.appendChild(arLink);
-
-                // Short delay to ensure the link is in the DOM
-                setTimeout(() => {
-                    arLink.click();
-                    document.body.removeChild(arLink);
-                }, 100);
-
-                setHasTriggered(true);
-            }
-        }, [hasTriggered]);
-
-        return (
-            <div style={{
-                height: '100%',
-                width: '100%',
-                position: 'relative',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexDirection: 'column',
-                gap: '10px',
-            }}>
-                <svg width="50" height="50" viewBox="0 0 24 24" fill="none">
-                    <path d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z" stroke="#333" strokeWidth="2"/>
-                    <path d="M12 8V12L15 13.5" stroke="#333" strokeWidth="2" strokeLinecap="round"/>
-                </svg>
-                <p style={{
-                    fontFamily: 'var(--font-quicksand)',
-                    color: '#333',
-                    textAlign: 'center'
-                }}>
-                    Launching AR...
-                </p>
-                <ARViewBadge />
-            </div>
-        );
-    };
 
     return (
         <section
@@ -390,76 +367,6 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                 position: "relative", // Important for absolute positioning of fade effects
             }}
         >
-            {/* Modal for non-AR devices */}
-            {imageModal && (
-                <div
-                    style={{
-                        position: 'fixed',
-                        top: 0,
-                        left: 0,
-                        width: '100%',
-                        height: '100%',
-                        background: 'rgba(0,0,0,0.8)',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        zIndex: 9999,
-                        flexDirection: 'column',
-                        padding: '20px',
-                    }}
-                    onClick={() => setImageModal(null)}
-                >
-                    <div style={{ maxWidth: '90%', maxHeight: '90%', position: 'relative' }}>
-                        <img
-                            src={imageModal}
-                            alt="Product view"
-                            style={{
-                                maxWidth: '100%',
-                                maxHeight: '80vh',
-                                borderRadius: '8px',
-                                backgroundColor: 'white',
-                                padding: '10px',
-                            }}
-                        />
-                        <button
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                setImageModal(null);
-                            }}
-                            style={{
-                                position: 'absolute',
-                                top: '10px',
-                                right: '10px',
-                                background: 'rgba(0,0,0,0.5)',
-                                color: 'white',
-                                border: 'none',
-                                borderRadius: '50%',
-                                width: '30px',
-                                height: '30px',
-                                cursor: 'pointer',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                fontSize: '18px',
-                            }}
-                        >
-                            ×
-                        </button>
-                    </div>
-                    <p style={{
-                        color: 'white',
-                        textAlign: 'center',
-                        marginTop: '20px',
-                        fontFamily: 'var(--font-quicksand)',
-                        fontSize: '1.2rem',
-                        maxWidth: '600px',
-                    }}>
-                        {isARSupported
-                            ? "AR experience available on iOS devices with Safari"
-                            : "This product can be viewed in AR on iOS devices. Web-based 3D viewer coming soon!"}
-                    </p>
-                </div>
-            )}
             {/* Top fade effect overlay */}
             <div
                 style={{
@@ -564,7 +471,7 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                             gap: "50px",
                         }}
                     >
-                        {/* First product with AR/3D support */}
+                        {/* First product with AR support */}
                         <div
                             style={{
                                 position: "relative",
@@ -575,28 +482,24 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                                 backgroundColor: "white",
                             }}
                         >
-                            {isARSupported ? (
-                                <ARAutoTrigger />
-                            ) : (
-                                <div
-                                    onClick={() => setImageModal('/ar-product-1.png')}
-                                    style={{
-                                        cursor: 'pointer',
-                                        height: '100%',
-                                        width: '100%',
-                                        position: 'relative',
-                                        display: 'block',
-                                    }}
-                                >
-                                    <SafeImage
-                                        src="/ar-product-1.png"
-                                        alt="Product 1 - Interactive View"
-                                        layout="fill"
-                                        style={{ objectFit: "contain" }}
-                                    />
-                                    <ARViewBadge />
-                                </div>
-                            )}
+                            <a
+                                rel="ar"
+                                href="/gear-pump.usdz"
+                                style={{
+                                    display: "block",
+                                    height: "100%",
+                                    width: "100%",
+                                    position: "relative",
+                                }}
+                            >
+                                <SafeImage
+                                    src="/ar-product-1.png"
+                                    alt="AR Product 1 - View in AR"
+                                    layout="fill"
+                                    style={{ objectFit: "contain" }}
+                                />
+                                <ARViewBadge />
+                            </a>
                         </div>
 
                         {/* Second product - now with AR support */}

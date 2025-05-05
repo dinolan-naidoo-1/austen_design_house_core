@@ -3,9 +3,20 @@ import React from 'react';
 import { SectionProps } from '../../types';
 import WhatsAppButton from "@/app/components/features/whatsapp-button";
 import Image from 'next/image';
-import Link from 'next/link';
+import useScrollToSection from '../../hooks/use-scroll-to-section';
 
 const InformationFooter: React.FC<SectionProps> = ({ id }) => {
+    const scrollToSection = useScrollToSection();
+
+    const handleNavItemClick = (id: string) => {
+        scrollToSection(id);
+    };
+
+    const handlePdfClick = (pdfPath: string) => {
+        // Open the PDF in a new tab
+        window.open(pdfPath, '_blank');
+    };
+
     return (
         <section id={id} className="footer-section">
             <div className="footer-container">
@@ -26,13 +37,32 @@ const InformationFooter: React.FC<SectionProps> = ({ id }) => {
 
                     <div className="footer-links">
                         <div className="links-column">
-                            <Link href="/">Home</Link>
-                            <Link href="/our-work">Our Work</Link>
-                            <Link href="/contact-us">Contact Us</Link>
+                            <a href="#home" className="footer-link" onClick={(e) => {
+                                e.preventDefault();
+                                handleNavItemClick('home');
+                            }}>Home</a>
+                            <a href="#our-work" className="footer-link" onClick={(e) => {
+                                e.preventDefault();
+                                handleNavItemClick('our-work');
+                            }}>Our Work</a>
+                            <a href="#contact" className="footer-link" onClick={(e) => {
+                                e.preventDefault();
+                                handleNavItemClick('contact');
+                            }}>Contact Us</a>
                         </div>
                         <div className="links-column">
-                            <Link href="/privacy-policy">Privacy Policy</Link>
-                            <Link href="/terms-of-service">Terms of service</Link>
+                            <a href="#" className="footer-link" onClick={(e) => {
+                                e.preventDefault();
+                                if (confirm('Open Privacy Policy')) {
+                                    handlePdfClick('Privacy Policy ADH.pdf');
+                                }
+                            }}>Privacy Policy</a>
+                            <a href="#" className="footer-link" onClick={(e) => {
+                                e.preventDefault();
+                                if (confirm('Open Terms Of Service')) {
+                                    handlePdfClick('/Terms of Service ADH.pdf');
+                                }
+                            }}>Terms of service</a>
                         </div>
                     </div>
                 </div>
@@ -106,18 +136,23 @@ const InformationFooter: React.FC<SectionProps> = ({ id }) => {
                 display: flex;
                 flex-direction: column;
                 gap: 1rem;
-
               }
 
               .links-column a {
                 color: #ffffff !important;
                 text-decoration: none !important;
-                font-size: 1rem;
                 transition: opacity 0.3s ease;
+                cursor: pointer;
               }
 
               .links-column a:hover {
                 opacity: 0.8;
+              }
+              
+              .footer-link {
+                font-size: 1.5rem;
+                color: #ffffff !important;
+                text-decoration: none !important;
               }
 
               .copyright {
@@ -144,6 +179,9 @@ const InformationFooter: React.FC<SectionProps> = ({ id }) => {
                 .logo-image {
                   width: 100px;
                 }
+                .footer-link {
+                  font-size: 1.2rem;
+                }
               }
 
               @media (max-width: 768px) {
@@ -156,6 +194,9 @@ const InformationFooter: React.FC<SectionProps> = ({ id }) => {
                 .footer-content {
                   flex-direction: column;
                   gap: 3rem;
+                }
+                .footer-link {
+                  font-size: 1.2rem;
                 }
 
                 .footer-links {
@@ -172,6 +213,9 @@ const InformationFooter: React.FC<SectionProps> = ({ id }) => {
                   font-size: 1.5rem;
                   max-width: 100%;
                   margin-bottom: 2.5rem;
+                }
+                .footer-link {
+                  font-size: 1.2rem;
                 }
 
                 .footer-links {

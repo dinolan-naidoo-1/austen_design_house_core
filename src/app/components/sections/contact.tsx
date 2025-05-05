@@ -107,10 +107,6 @@ const ContactSection: React.FC<SectionProps> = ({ id }) => {
                         {/* Contact Info - Left Column */}
                         <div className="contact-info">
                             <div className="info-block">
-                                <h3 className="info-title">PHONE NUMBER</h3>
-                                <p className="info-text">068 075 9791</p>
-                            </div>
-                            <div className="info-block">
                                 <h3 className="info-title">EMAIL ADDRESS</h3>
                                 <p className="info-text">info@austendesign.co.za</p>
                             </div>
@@ -212,10 +208,6 @@ const ContactSection: React.FC<SectionProps> = ({ id }) => {
 
                         {/* Website & Location - Right Column */}
                         <div className="contact-info">
-                            <div className="info-block">
-                                <h3 className="info-title">WEBSITE</h3>
-                                <p className="info-text">www.austendesign.co.za</p>
-                            </div>
                             <div className="info-block">
                                 <h3 className="info-title">JOHANNESBURG, ZA</h3>
                             </div>
