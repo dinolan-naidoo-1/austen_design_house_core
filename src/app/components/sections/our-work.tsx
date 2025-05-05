@@ -493,7 +493,7 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                                 }}
                             >
                                 <SafeImage
-                                    src="/ar-product-1.png"
+                                    src="/gear_pump_image.jpg"
                                     alt="AR Product 1 - View in AR"
                                     layout="fill"
                                     style={{ objectFit: "contain" }}
@@ -515,7 +515,7 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                         >
                             <a
                                 rel="ar"
-                                href="/interactive-product-2.usdz"
+                                href="/terry_dining_chair.usdz"
                                 style={{
                                     display: "block",
                                     height: "100%",
@@ -566,7 +566,7 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                         >
                             <a
                                 rel="ar"
-                                href="/interactive-product-3.usdz"
+                                href="/tub_chair.usdz"
                                 style={{
                                     display: "block",
                                     height: "100%",
