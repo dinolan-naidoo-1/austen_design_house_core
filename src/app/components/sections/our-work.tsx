@@ -524,7 +524,7 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                                 }}
                             >
                                 <SafeImage
-                                    src="/ar-product-2.png"
+                                    src="/terry_chair_image.jpg"
                                     alt="AR Product 2 - View in AR"
                                     layout="fill"
                                     style={{ objectFit: "contain" }}
@@ -575,7 +575,7 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                                 }}
                             >
                                 <SafeImage
-                                    src="/ar-product-3.png"
+                                    src="/adh_chair_image.jpg"
                                     alt="AR Product 3 - View in AR"
                                     layout="fill"
                                     style={{ objectFit: "contain" }}

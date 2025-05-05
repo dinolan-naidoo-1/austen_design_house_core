@@ -105,7 +105,7 @@ const ContactSection: React.FC<SectionProps> = ({ id }) => {
 
                     <div className="contact-content">
                         {/* Contact Info - Left Column */}
-                        <div className="contact-info">
+                        <div className="contact-info contact-info-left">
                             <div className="info-block">
                                 <h3 className="info-title">EMAIL ADDRESS</h3>
                                 <p className="info-text">info@austendesign.co.za</p>
@@ -207,7 +207,7 @@ const ContactSection: React.FC<SectionProps> = ({ id }) => {
                         </div>
 
                         {/* Website & Location - Right Column */}
-                        <div className="contact-info">
+                        <div className="contact-info contact-info-right">
                             <div className="info-block">
                                 <h3 className="info-title">JOHANNESBURG, ZA</h3>
                             </div>
@@ -433,10 +433,12 @@ const ContactSection: React.FC<SectionProps> = ({ id }) => {
                   flex-direction: row;
                   justify-content: center;
                   flex-wrap: wrap;
+                  margin: 0;
+                  gap: 0.5rem;
                 }
 
                 .info-block {
-                  margin: 0 0.1rem;
+                  margin: 0 0.5rem;
                   min-width: 200px;
                 }
 
@@ -444,6 +446,15 @@ const ContactSection: React.FC<SectionProps> = ({ id }) => {
                   order: 1;
                   padding: 0 1rem;
                   max-width: 100%;
+                }
+
+                /* Create a contact info container to hold both pieces of info */
+                .mobile-contact-info-container {
+                  display: flex;
+                  flex-direction: column;
+                  gap: 1rem;
+                  width: 100%;
+                  text-align: center;
                 }
               }
 
@@ -464,19 +475,18 @@ const ContactSection: React.FC<SectionProps> = ({ id }) => {
                 }
 
                 .contact-content {
-                  gap: 1rem;
+                  gap: 0.25rem;
                 }
 
                 .contact-info {
                   padding: 0;
-                  flex-direction: column;
-                  align-items: center;
+                  gap: 0;
+                  margin: 0;
                 }
 
                 .info-block {
-                  margin: 0.5rem 0;
+                  margin: 0 0.5rem;
                   text-align: center;
-                  width: 100%;
                 }
 
                 .info-title {
@@ -490,6 +500,7 @@ const ContactSection: React.FC<SectionProps> = ({ id }) => {
 
                 .contact-form {
                   padding: 0;
+                  margin: 1rem 0;
                 }
 
                 .form-input,
