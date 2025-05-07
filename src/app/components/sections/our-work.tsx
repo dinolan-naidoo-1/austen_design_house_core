@@ -41,6 +41,7 @@ const ImmersiveEcommerceStats = () => {
         display: 'flex',
         alignItems: 'center',
         marginBottom: '2rem',
+        flexDirection: isSmallScreen ? 'column' : 'row',
     };
 
     const circleStyle: React.CSSProperties = {
@@ -52,7 +53,8 @@ const ImmersiveEcommerceStats = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        marginRight: '1.5rem',
+        marginRight: isSmallScreen ? '0' : '1.5rem',
+        marginBottom: isSmallScreen ? '1rem' : '0',
         flexShrink: 0,
     };
 
@@ -89,6 +91,7 @@ const ImmersiveEcommerceStats = () => {
         fontSize: fontSizeText,
         fontFamily: 'var(--font-quicksand)',
         flex: 1,
+        textAlign: isSmallScreen ? 'center' : 'left',
     };
 
     const containerStyle: React.CSSProperties = {
@@ -97,10 +100,9 @@ const ImmersiveEcommerceStats = () => {
         justifyContent: 'space-between',
         backgroundColor: 'white',
         borderRadius: '8px',
-        padding: '2rem',
+        padding: isSmallScreen ? '1.5rem' : '2rem',
         boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
         height: '100%',
-        width: '100%',
     };
 
     const titleStyle: React.CSSProperties = {
@@ -118,6 +120,7 @@ const ImmersiveEcommerceStats = () => {
         marginTop: '1rem',
         color: '#555',
         fontSize: fontSizeSource,
+        flexWrap: isSmallScreen ? 'wrap' : 'nowrap',
     };
 
     return (
@@ -152,7 +155,7 @@ const ImmersiveEcommerceStats = () => {
                 <div style={circleStyle}>
                     <div style={{
                         ...orangeCircleStyle,
-                        clipPath: 'polygon(50% 50%, 100% 0, 100% 100%, 0 100%, 0 0, 100% 0, 30% 0)'
+                        clipPath: 'polygon(50% 50%, 100% 0, 100% 100%, 0 100%, 0 0, 100% 0, 30% 0)' as any
                     }}></div>
                     <div style={innerCircleStyle}>
                         <span style={percentStyle}>94%</span>
@@ -167,7 +170,7 @@ const ImmersiveEcommerceStats = () => {
                 <div style={circleStyle}>
                     <div style={{
                         ...orangeCircleStyle,
-                        clipPath: 'polygon(50% 50%, 100% 0, 100% 100%, 0 100%, 0 0, 100% 0)'
+                        clipPath: 'polygon(50% 50%, 100% 0, 100% 100%, 0 100%, 0 0, 100% 0)' as any
                     }}></div>
                     <div style={innerCircleStyle}>
                         <span style={percentStyle}>5x</span>
@@ -188,6 +191,21 @@ const ImmersiveEcommerceStats = () => {
 };
 
 const ApplePayButton = () => {
+    const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+    useEffect(() => {
+        const checkScreenSize = () => {
+            if (typeof window !== 'undefined') {
+                setIsSmallScreen(window.innerWidth < 768);
+            }
+        };
+
+        checkScreenSize();
+        window.addEventListener('resize', checkScreenSize);
+
+        return () => window.removeEventListener('resize', checkScreenSize);
+    }, []);
+
     return (
         <div
             style={{
@@ -198,12 +216,13 @@ const ApplePayButton = () => {
                 alignItems: "center",
                 justifyContent: "center",
                 fontFamily: "-apple-system, BlinkMacSystemFont, sans-serif",
-                fontSize: "2rem",
+                fontSize: isSmallScreen ? "1.5rem" : "2rem",
                 fontWeight: "500",
                 minHeight: "48px",
-                padding: "0.2rem",
-                width: "100%",
-                maxWidth: "200px"
+                padding: "0.2rem 1.5rem",
+                width: isSmallScreen ? "auto" : "50%",
+                margin: isSmallScreen ? "0 auto" : "0",
+                maxWidth: isSmallScreen ? "250px" : "none",
             }}
         >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginRight: "8px" }}>
@@ -215,176 +234,171 @@ const ApplePayButton = () => {
     );
 };
 
-// Safe image component with error handling
-const SafeImage: React.FC<SafeImageProps> = ({
-                                                 src,
-                                                 alt,
-                                                 width,
-                                                 height,
-                                                 style = {},
-                                                 layout,
-                                             }) => {
-    const [error, setError] = useState(false);
-
-    if (error) {
-        return (
-            <div
-                style={{
-                    backgroundColor: "#f0f0f0",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    width: width ? `${width}px` : "100%",
-                    height: height ? `${height}px` : "100%",
-                    ...style,
-                }}
-            >
-                <p style={{ color: "#666", fontSize: "0.8rem" }}>{alt}</p>
-            </div>
-        );
-    }
-
-    // For fill layout
-    if (layout === "fill") {
-        return (
-            <div style={{ position: "relative", width: "100%", height: "100%" }}>
-                <Image
-                    src={src}
-                    alt={alt}
-                    fill
-                    style={style}
-                    onError={() => setError(true)}
-                />
-            </div>
-        );
-    }
-
-    // For fixed dimensions
-    return (
-        <Image
-            src={src}
-            alt={alt}
-            width={width || 100}
-            height={height || 100}
-            style={style}
-            onError={() => setError(true)}
-        />
-    );
-};
-
-// AR View Badge component for reuse
-const ARViewBadge = () => (
-    <div
-        style={{
-            position: "absolute",
-            bottom: "8px",
-            right: "8px",
-            background: "rgba(0,0,0,0.6)",
-            color: "white",
-            padding: "4px 8px",
-            borderRadius: "4px",
-            fontSize: "0.7rem",
-            display: "flex",
-            alignItems: "center",
-            gap: "4px",
-        }}
-    >
-        <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-        >
-            <path
-                d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z"
-                stroke="white"
-                strokeWidth="2"
-            />
-            <path
-                d="M12 2V4"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-            />
-            <path
-                d="M12 20V22"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-            />
-            <path
-                d="M4 12H2"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-            />
-            <path
-                d="M22 12H20"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-            />
-            <path
-                d="M19.7781 4.22192L17.5561 6.44394"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-            />
-            <path
-                d="M6.44394 17.5561L4.22192 19.7781"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-            />
-            <path
-                d="M19.7781 19.7781L17.5561 17.5561"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-            />
-            <path
-                d="M6.44394 6.44394L4.22192 4.22192"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-            />
-        </svg>
-        AR View for iOS
-    </div>
-);
-
 const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
-    // Screen size detection
-    const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
+    const [isSmallScreen, setIsSmallScreen] = useState(false);
 
     useEffect(() => {
-        const handleResize = () => {
+        const checkScreenSize = () => {
             if (typeof window !== 'undefined') {
-                setWindowWidth(window.innerWidth);
+                setIsSmallScreen(window.innerWidth < 768);
             }
         };
 
-        if (typeof window !== 'undefined') {
-            window.addEventListener('resize', handleResize);
-            return () => window.removeEventListener('resize', handleResize);
-        }
+        checkScreenSize();
+        window.addEventListener('resize', checkScreenSize);
+
+        return () => window.removeEventListener('resize', checkScreenSize);
     }, []);
 
-    // Define breakpoint for mobile vs desktop layout
-    const isMobile = windowWidth < 768;
+    // Safe image component with error handling
+    const SafeImage: React.FC<SafeImageProps> = ({
+                                                     src,
+                                                     alt,
+                                                     width,
+                                                     height,
+                                                     style = {},
+                                                     layout,
+                                                 }) => {
+        const [error, setError] = useState(false);
+
+        if (error) {
+            return (
+                <div
+                    style={{
+                        backgroundColor: "#f0f0f0",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        width: width ? `${width}px` : "100%",
+                        height: height ? `${height}px` : "100%",
+                        ...style,
+                    }}
+                >
+                    <p style={{ color: "#666", fontSize: "0.8rem" }}>{alt}</p>
+                </div>
+            );
+        }
+
+        // For fill layout
+        if (layout === "fill") {
+            return (
+                <div style={{ position: "relative", width: "100%", height: "100%" }}>
+                    <Image
+                        src={src}
+                        alt={alt}
+                        fill
+                        style={style}
+                        onError={() => setError(true)}
+                    />
+                </div>
+            );
+        }
+
+        // For fixed dimensions
+        return (
+            <Image
+                src={src}
+                alt={alt}
+                width={width || 100}
+                height={height || 100}
+                style={style}
+                onError={() => setError(true)}
+            />
+        );
+    };
+
+    // AR View Badge component for reuse
+    const ARViewBadge = () => (
+        <div
+            style={{
+                position: "absolute",
+                bottom: "8px",
+                right: "8px",
+                background: "rgba(0,0,0,0.6)",
+                color: "white",
+                padding: "4px 8px",
+                borderRadius: "4px",
+                fontSize: "0.7rem",
+                display: "flex",
+                alignItems: "center",
+                gap: "4px",
+            }}
+        >
+            <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18Z"
+                    stroke="white"
+                    strokeWidth="2"
+                />
+                <path
+                    d="M12 2V4"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                />
+                <path
+                    d="M12 20V22"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                />
+                <path
+                    d="M4 12H2"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                />
+                <path
+                    d="M22 12H20"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                />
+                <path
+                    d="M19.7781 4.22192L17.5561 6.44394"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                />
+                <path
+                    d="M6.44394 17.5561L4.22192 19.7781"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                />
+                <path
+                    d="M19.7781 19.7781L17.5561 17.5561"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                />
+                <path
+                    d="M6.44394 6.44394L4.22192 4.22192"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                />
+            </svg>
+            AR View for iOS
+        </div>
+    );
 
     return (
         <section
             id={id}
             className="section our-work-section"
             style={{
-                minHeight: "auto",
+                minHeight: isSmallScreen ? "100%" : "135vh",
                 paddingTop: "3rem",
-                paddingBottom: "3rem",
-                overflow: "hidden",
+                overflow: "hidden", // Prevent any potential overflow issues
                 backgroundColor: "#dcdcdc",
-                position: "relative",
+                position: "relative", // Important for absolute positioning of fade effects
             }}
         >
             {/* Top fade effect overlay */}
@@ -395,11 +409,11 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                     left: 0,
                     width: "100%",
                     height: "80px",
-                    background: "linear-gradient(to bottom, white, rgba(255, 255, 255, 0))",
+                    background:
+                        "linear-gradient(to bottom, white, rgba(255, 255, 255, 0))",
                     zIndex: 1,
                 }}
             ></div>
-
             {/* Bottom fade effect overlay */}
             <div
                 style={{
@@ -412,11 +426,10 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                     zIndex: 1,
                 }}
             ></div>
-
             <h1
                 style={{
                     textAlign: "center",
-                    fontSize: isMobile ? "2.2rem" : "2.7rem",
+                    fontSize: isSmallScreen ? "2rem" : "2.7rem",
                     fontFamily: "var(--font-quicksand)",
                     marginBottom: "2rem",
                 }}
@@ -427,23 +440,25 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
             <div
                 style={{
                     display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
+                    flexDirection: isSmallScreen ? "column" : "row",
+                    flexWrap: "wrap",
+                    gap: "20px",
                     width: "100%",
-                    maxWidth: "1200px",
-                    margin: "0 auto",
-                    padding: "0 1rem",
+                    padding: isSmallScreen ? "1rem" : "2rem",
+                    alignItems: isSmallScreen ? "center" : "stretch",
                 }}
             >
-                {/* Video component */}
+                {/* Video on the left (now on top for small screens) */}
                 <div
                     style={{
-                        width: "100%",
-                        maxWidth: "350px",
-                        marginBottom: "2rem",
+                        width: isSmallScreen ? "90%" : "350px",
+                        height: "100%",
+                        overflow: "hidden",
+                        marginLeft: isSmallScreen ? 0 : 8,
                         backgroundColor: "white",
                         boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
                         borderRadius: "8px",
+                        alignSelf: isSmallScreen ? "center" : "auto",
                     }}
                 >
                     <video
@@ -451,7 +466,7 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                         loop
                         muted
                         playsInline
-                        style={{ width: "100%", height: "auto", objectFit: "cover" }}
+                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
                         poster="/austen-logo-white.png"
                     >
                         <source src="/shoe-video.mp4" type="video/mp4" />
@@ -462,9 +477,9 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                             style={{
                                 fontSize: "1.25rem",
                                 fontWeight: 600,
-                                marginBottom: "0.6rem",
+                                marginBottom: "0.5rem",
                                 fontFamily: "var(--font-quicksand)",
-                                textAlign: "center",
+                                textAlign: isSmallScreen ? "center" : "left",
                             }}
                         >
                             AR Shopping Experience
@@ -473,7 +488,7 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                             style={{
                                 color: "#4B5563",
                                 fontFamily: "var(--font-quicksand)",
-                                textAlign: "center",
+                                textAlign: isSmallScreen ? "center" : "left",
                             }}
                         >
                             Sell directly from AR. Customers can now buy your products
@@ -483,24 +498,24 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                     </div>
                 </div>
 
-                {/* Product Grid */}
+                {/* Three images on the right (now below for small screens) */}
                 <div
                     style={{
-                        width: "100%",
-                        maxWidth: "1000px",
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        gap: "20px",
-                        marginBottom: "2rem",
+                        flex: isSmallScreen ? "none" : "1",
+                        width: isSmallScreen ? "90%" : "auto",
+                        minWidth: isSmallScreen ? "auto" : "300px",
+                        maxWidth: isSmallScreen ? "90%" : "calc(100% - 300px)", // Adjust based on video width + gap
+                        alignSelf: isSmallScreen ? "center" : "auto",
                     }}
                 >
                     <div
                         style={{
                             display: "grid",
-                            gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)",
-                            gap: "20px",
-                            width: "100%",
+                            gridTemplateColumns: isSmallScreen
+                                ? "repeat(1, 1fr)"
+                                : "repeat(auto-fit, minmax(180px, 1fr))",
+                            gap: isSmallScreen ? "30px" : "50px",
+                            justifyItems: isSmallScreen ? "center" : "stretch",
                         }}
                     >
                         {/* First product with AR support */}
@@ -508,11 +523,11 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                             style={{
                                 position: "relative",
                                 height: "200px",
-                                width: "100%",
+                                width: isSmallScreen ? "90%" : "auto",
                                 borderRadius: "8px",
                                 overflow: "hidden",
                                 boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-                                backgroundColor: "white"
+                                backgroundColor: "white",
                             }}
                         >
                             <a
@@ -535,16 +550,16 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                             </a>
                         </div>
 
-                        {/* Second product with AR support */}
+                        {/* Second product - now with AR support */}
                         <div
                             style={{
                                 position: "relative",
                                 height: "200px",
-                                width: "100%",
+                                width: isSmallScreen ? "90%" : "auto",
                                 borderRadius: "8px",
                                 overflow: "hidden",
                                 boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-                                backgroundColor: "white"
+                                backgroundColor: "white",
                             }}
                         >
                             <a
@@ -571,7 +586,7 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                                         fontSize: "0.875rem",
                                         fontWeight: 500,
                                         fontFamily: "var(--font-quicksand)",
-                                        textAlign: "center",
+                                        textAlign: isSmallScreen ? "center" : "left",
                                     }}
                                 >
                                     Modern Chair
@@ -581,7 +596,7 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                                         fontSize: "0.75rem",
                                         color: "#6B7280",
                                         fontFamily: "var(--font-quicksand)",
-                                        textAlign: "center",
+                                        textAlign: isSmallScreen ? "center" : "left",
                                     }}
                                 >
                                     3D AR Model
@@ -589,16 +604,16 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                             </div>
                         </div>
 
-                        {/* Third product with AR support */}
+                        {/* Third product - now with AR support */}
                         <div
                             style={{
                                 position: "relative",
                                 height: "200px",
-                                width: "100%",
+                                width: isSmallScreen ? "90%" : "auto",
                                 borderRadius: "8px",
                                 overflow: "hidden",
                                 boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-                                backgroundColor: "white"
+                                backgroundColor: "white",
                             }}
                         >
                             <a
@@ -625,7 +640,7 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                                         fontSize: "0.875rem",
                                         fontWeight: 500,
                                         fontFamily: "var(--font-quicksand)",
-                                        textAlign: "center",
+                                        textAlign: isSmallScreen ? "center" : "left",
                                     }}
                                 >
                                     Orange Fridge
@@ -635,7 +650,7 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                                         fontSize: "0.75rem",
                                         color: "#6B7280",
                                         fontFamily: "var(--font-quicksand)",
-                                        textAlign: "center",
+                                        textAlign: isSmallScreen ? "center" : "left",
                                     }}
                                 >
                                     3D AR Model
@@ -644,23 +659,26 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                         </div>
                     </div>
 
-                    {/* Apple integration section */}
                     <div
                         style={{
-                            marginTop: "2rem",
-                            padding: "1.5rem",
+                            marginTop: isSmallScreen ? "2rem" : "clamp(2rem, 2.5vw, 20rem)",
+                            padding: isSmallScreen ? "1rem" : "16px",
                             backgroundColor: "#f7f5f5",
                             borderRadius: "8px",
-                            width: "100%",
+                            width: isSmallScreen ? "90%" : "auto",
+                            alignSelf: "center",
+                            marginLeft: isSmallScreen ? "auto" : "0",
+                            marginRight: isSmallScreen ? "auto" : "0",
                         }}
                     >
                         <h2
                             style={{
-                                fontSize: "1.5rem",
+                                fontSize: "clamp(1.3rem, 2.5vw, 2.3rem)",
                                 fontWeight: 600,
-                                marginBottom: "1.5rem",
+                                marginBottom: "8px",
                                 fontFamily: "var(--font-quicksand)",
-                                textAlign: "center"
+                                padding: isSmallScreen ? "1rem" : "3rem",
+                                textAlign: isSmallScreen ? "center" : "left",
                             }}
                         >
                             Apple integration in Augmented Reality (AR) Environment
@@ -669,33 +687,40 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                         <div
                             style={{
                                 display: "flex",
-                                flexDirection: "column",
+                                flexDirection: isSmallScreen ? "column" : "row",
                                 alignItems: "center",
-                                gap: "1.5rem",
-                                width: "100%",
+                                gap: isSmallScreen ? "20px" : "5px",
+                                flexWrap: "wrap",
+                                justifyContent: "center", // centers children on small screens
                             }}
                         >
                             <div
                                 style={{
+                                    flex: isSmallScreen ? "none" : "1 1 200px",
+                                    maxWidth: "100%",
+                                    minWidth: isSmallScreen ? "auto" : "150px",
+                                    paddingLeft: isSmallScreen ? "0" : "2rem",
+                                    height: "60px",
+                                    position: "relative",
                                     display: "flex",
                                     justifyContent: "center",
-                                    width: "100%",
                                 }}
                             >
                                 <ApplePayButton />
                             </div>
                             <div
                                 style={{
-                                    width: "100%",
-                                    maxWidth: "600px",
+                                    flex: isSmallScreen ? "none" : "2 1 300px",
+                                    maxWidth: "100%",
+                                    paddingRight: isSmallScreen ? "0" : "2rem",
                                 }}
                             >
                                 <p
                                     style={{
                                         color: "#4B5563",
                                         fontFamily: "var(--font-quicksand)",
-                                        fontSize: "1rem",
-                                        textAlign: "center",
+                                        fontSize: "clamp(1rem, 2vw, 2rem)",
+                                        textAlign: isSmallScreen ? "center" : "left",
                                     }}
                                 >
                                     Apple Pay can now be integrated into the AR Quicklook environment so
@@ -706,65 +731,69 @@ const OurWorksSection: React.FC<SectionProps> = ({ id }) => {
                         </div>
                     </div>
                 </div>
+            </div>
 
-                {/* Stats and Video Section */}
+            {/* New section for second video and image - added content */}
+            <div
+                style={{
+                    display: "flex",
+                    flexDirection: isSmallScreen ? "column" : "row",
+                    flexWrap: "wrap",
+                    gap: "20px",
+                    width: "100%",
+                    padding: isSmallScreen ? "1rem" : "2rem",
+                    marginTop: "1rem",
+                    alignItems: isSmallScreen ? "center" : "stretch",
+                }}
+            >
+                {/* Analytics section */}
                 <div
                     style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        gap: "2rem",
-                        width: "100%",
-                        marginTop: "2rem",
+                        flex: isSmallScreen ? "none" : "1",
+                        width: isSmallScreen ? "90%" : "auto",
+                        minWidth: isSmallScreen ? "auto" : "300px",
+                        position: "relative",
+                        borderRadius: "8px",
+                        overflow: "hidden",
+                        height: "auto",
                     }}
                 >
-                    {/* Stats component */}
-                    <div
-                        style={{
-                            width: "100%",
-                            maxWidth: "350px",
-                        }}
-                    >
-                        <ImmersiveEcommerceStats />
-                    </div>
-
-                    {/* Second video */}
-                    <div
-                        style={{
-                            width: "100%",
-                            maxWidth: "350px",
-                            overflow: "hidden",
-                            backgroundColor: "white",
-                            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-                            borderRadius: "8px",
-                        }}
-                    >
-                        <video
-                            autoPlay
-                            loop
-                            muted
-                            playsInline
-                            style={{ width: "100%", height: "auto", objectFit: "cover" }}
-                            poster="/austen-logo-white.png"
-                        >
-                            <source src="/advert-video.mp4" type="video/mp4" />
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
+                    <ImmersiveEcommerceStats />
                 </div>
 
-                {/* WhatsApp Button */}
+                {/* Second video - now on the right (bottom for small screens) */}
                 <div
                     style={{
-                        marginTop: "2.5rem",
-                        zIndex: "999",
-                        display: "flex",
-                        justifyContent: "center",
-                        width: "100%"
+                        width: isSmallScreen ? "90%" : "400px",
+                        height: "auto",
+                        overflow: "hidden",
+                        backgroundColor: "white",
+                        boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+                        borderRadius: "8px",
+                        alignSelf: isSmallScreen ? "center" : "auto",
                     }}
                 >
-                    <WhatsAppButton />
+                    <video
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                        poster="/austen-logo-white.png"
+                    >
+                        <source src="/advert-video.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
+            </div>
+
+            <div style={{
+                paddingTop: "1rem",
+                zIndex: "999",
+                display: "flex",
+                justifyContent: "center"
+            }}>
+                <WhatsAppButton />
             </div>
         </section>
     );
