@@ -1,18 +1,26 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Remove this line if it exists: output: 'export',
+  // Add this line to enable static export
+  output: 'export',
 
   // Keep ESLint disabled during build if needed
   eslint: {
     ignoreDuringBuilds: true,
   },
 
-  // Vercel can handle optimized images - enable this
+  // For static export, we need unoptimized images
   images: {
+    unoptimized: true,
     // Add any domains you need for external images
     // domains: ['example.com'],
-    // Remove unoptimized: true if it exists
   },
 
-  // Other Vercel-friendly settings can go here
+  // Add this for Three.js support
+  transpilePackages: ['three'],
+
+  // This helps with routing on traditional web servers
+  trailingSlash: true,
 };
+
+// Use module.exports syntax for better compatibility
+module.exports = nextConfig;

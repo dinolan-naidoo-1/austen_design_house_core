@@ -1,5 +1,6 @@
 {
   "name": "austen_design_house",
+  "homepage": "https://austendesign.co.za/",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,9 +10,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@react-three/drei": "9.88.7",
+    "@react-three/drei": "^9.122.0",
     "@react-three/fiber": "8.15.11",
-    "next": "14.0.4",
+    "next": "^14.2.28",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "resend": "2.0.0",
@@ -23,7 +24,6 @@
     "@types/react-dom": "18.2.15",
     "eslint": "8.54.0",
     "eslint-config-next": "14.0.4",
-    "tailwindcss": "3.3.5",
     "typescript": "5.2.2"
   }
 }

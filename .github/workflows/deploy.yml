@@ -26,43 +26,140 @@ jobs:
         env:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
 
-      # Debug step to find the output directory
-      - name: Debug output directories
+      # Debug step
+      - name: Debug Next.js Export
         run: |
-          echo "Listing directory structure:"
-          find . -type d -maxdepth 3 -not -path "*/node_modules/*" -not -path "*/.git/*"
-          echo "Looking for possible output directories:"
+          echo "========= CHECKING BUILD OUTPUT ========="
+          echo "Contents of the root directory:"
+          ls -la
+          
+          # Check if 'out' directory exists
+          if [ -d "./out" ]; then
+            echo "The 'out' directory exists. Contents:"
+            ls -la ./out/
+          
+            # Check for index.html in the out directory
+            if [ -f "./out/index.html" ]; then
+              echo "index.html exists in ./out/"
+            else
+              echo "WARNING: index.html DOES NOT EXIST in ./out/"
+            fi
+          else
+            echo "The 'out' directory DOES NOT EXIST!"
+          fi
+          
+          # Look for any index.html files in the project
+          echo "Searching for any index.html files in the project:"
           find . -name "index.html" -not -path "*/node_modules/*" -not -path "*/.git/*"
+          
+          echo "========= DEBUG COMPLETE ========="
 
-      # Create .htaccess file with improved error handling
+      # Create a fallback index.html if it doesn't exist
+      - name: Ensure index.html exists
+        run: |
+          if [ ! -f "./out/index.html" ]; then
+            echo "Creating fallback index.html..."
+          
+            # Find the home page HTML file that should be redirected to
+            HOME_PAGE=$(find ./out -name "*.html" -not -path "*/404*" -not -path "*/500*" | head -n 1)
+          
+            if [ -n "$HOME_PAGE" ]; then
+              echo "Found potential home page: $HOME_PAGE"
+          
+              # Create a simple redirect index.html
+              cat > ./out/index.html << EOL
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <meta http-equiv="refresh" content="0;url=$(basename $HOME_PAGE)" />
+            <title>Redirecting to Austen Design House</title>
+          </head>
+          <body>
+            <p>If you are not redirected automatically, <a href="$(basename $HOME_PAGE)">click here</a>.</p>
+          </body>
+          </html>
+          EOL
+          
+              echo "Created redirect index.html to $(basename $HOME_PAGE)"
+            else
+              # Create a simple placeholder
+              cat > ./out/index.html << EOL
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <title>Austen Design House</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <style>
+              body { font-family: Arial, sans-serif; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; height: 100vh; text-align: center; }
+              div { max-width: 600px; padding: 20px; }
+              h1 { color: #333; }
+            </style>
+          </head>
+          <body>
+            <div>
+              <h1>Austen Design House</h1>
+              <p>Our website is being updated. Please check back soon.</p>
+            </div>
+          </body>
+          </html>
+          EOL
+          
+              echo "Created fallback index.html"
+            fi
+          
+            # Verify the file was created
+            if [ -f "./out/index.html" ]; then
+              echo "index.html successfully created"
+            else
+              echo "Failed to create index.html"
+            fi
+          fi
+
+      # Create .htaccess file
       - name: Create .htaccess for client-side routing
         run: |
-          # Make sure the out directory exists before trying to write to it
-          mkdir -p ./out
-          
-          # Create .htaccess file
           cat > ./out/.htaccess << 'EOL'
           <IfModule mod_rewrite.c>
           RewriteEngine On
           RewriteBase /
-          RewriteRule ^index\.html$ - [L]
+          
+          # If the request is for an existing file or directory, serve it directly
+          RewriteCond %{REQUEST_FILENAME} -f [OR]
+          RewriteCond %{REQUEST_FILENAME} -d
+          RewriteRule ^ - [L]
+          
+          # Handle Next.js pages
+          RewriteRule ^([^/]+)/$ /$1.html [L]
+          
+          # Handle direct HTML requests
+          RewriteCond %{REQUEST_FILENAME} !-f
+          RewriteCond %{REQUEST_FILENAME}.html -f
+          RewriteRule ^(.*)$ $1.html [L]
+          
+          # Redirect all other requests to index.html for client-side routing
           RewriteCond %{REQUEST_FILENAME} !-f
           RewriteCond %{REQUEST_FILENAME} !-d
-          RewriteRule . /index.html [L]
+          RewriteRule ^ index.html [L]
           </IfModule>
+          
+          # Prevent directory listing
+          Options -Indexes
+          
+          # Set default character set
+          AddDefaultCharset UTF-8
           EOL
           
-          # Confirm file created
+          echo "Created .htaccess file"
           cat ./out/.htaccess
 
-      # Modified deployment step with a fallback to different directories if needed
+      # Deploy to Afrihost
       - name: Deploy to Afrihost
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: kenway.aserv.co.za
           username: austeno2b4d1
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./out/  # This should be the primary directory
+          local-dir: ./out/
           server-dir: /public_html/
           exclude: |
             **/.git*
