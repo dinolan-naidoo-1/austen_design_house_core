@@ -105,11 +105,7 @@ const ContactSection: React.FC<SectionProps> = ({ id }) => {
 
                     <div className="contact-content">
                         {/* Contact Info - Left Column */}
-                        <div className="contact-info">
-                            <div className="info-block">
-                                <h3 className="info-title">PHONE NUMBER</h3>
-                                <p className="info-text">068 075 9791</p>
-                            </div>
+                        <div className="contact-info contact-info-left">
                             <div className="info-block">
                                 <h3 className="info-title">EMAIL ADDRESS</h3>
                                 <p className="info-text">info@austendesign.co.za</p>
@@ -127,7 +123,7 @@ const ContactSection: React.FC<SectionProps> = ({ id }) => {
                                         value={formData.email}
                                         onChange={handleChange}
                                         onBlur={() => formData.email && validateEmail(formData.email)}
-                                        placeholder="your email*"
+                                        placeholder="Email*"
                                         required
                                         className={`form-input ${emailError ? 'error' : ''}`}
                                     />
@@ -141,7 +137,7 @@ const ContactSection: React.FC<SectionProps> = ({ id }) => {
                                         name="contactNumber"
                                         value={formData.contactNumber}
                                         onChange={handleChange}
-                                        placeholder="contact number*"
+                                        placeholder="Contact Number*"
                                         required
                                         pattern="^\d{9,15}$"
                                         title="Enter a valid phone number"
@@ -152,7 +148,7 @@ const ContactSection: React.FC<SectionProps> = ({ id }) => {
                                 {/* Interest */}
                                 <div className="form-group">
                                     <label htmlFor="interest-select" className="select-label">
-                                        I'm interested in*
+                                        What's your project about? Let us know!
                                     </label>
                                     <select
                                         id="interest-select"
@@ -165,14 +161,16 @@ const ContactSection: React.FC<SectionProps> = ({ id }) => {
                                         <option value="" disabled>
                                             Select an option
                                         </option>
-                                        <option value="3D Product Visualization">
-                                            3D Product Visualization
+                                        <option value="3D Interactive AR Models ">
+                                            3D Interactive AR Models
                                         </option>
-                                        <option value="Interior Design">Interior Design</option>
-                                        <option value="Architectural Visualization">
-                                            Architectural Visualization
+                                        <option value="Product Animations">Product Animations</option>
+                                        <option value="Technical Drawings">
+                                            Technical Drawings
                                         </option>
-                                        <option value="Virtual Reality">Virtual Reality</option>
+                                        <option value="Interior Renders">Interior Renders</option>
+                                        <option value="Furniture Models & Fabric Application">Furniture Models & Fabric Application</option>
+                                        <option value="Sheet Metal Design; Bending Orientations; DXF Files">Sheet Metal Design; Bending Orientations; DXF Files</option>
                                         <option value="Other">Other</option>
                                     </select>
                                 </div>
@@ -209,11 +207,7 @@ const ContactSection: React.FC<SectionProps> = ({ id }) => {
                         </div>
 
                         {/* Website & Location - Right Column */}
-                        <div className="contact-info">
-                            <div className="info-block">
-                                <h3 className="info-title">WEBSITE</h3>
-                                <p className="info-text">www.austendesign.co.za</p>
-                            </div>
+                        <div className="contact-info contact-info-right">
                             <div className="info-block">
                                 <h3 className="info-title">JOHANNESBURG, ZA</h3>
                             </div>
@@ -231,258 +225,301 @@ const ContactSection: React.FC<SectionProps> = ({ id }) => {
 
             {/* CSS Styles */}
             <style jsx>{`
-        .section.contact-section {
-          min-height: 120vh;
-          padding-top: 3rem;
-          padding-bottom: 5rem;
-          display: flex;
-          justify-content: center;
-          align-items: flex-start;
-        }
+              .section.contact-section {
+                min-height: 120vh;
+                padding-top: 3rem;
+                padding-bottom: 5rem;
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+              }
 
-        .contact-container {
-          width: 100%;
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 0 1rem;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
+              .contact-container {
+                width: 100%;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 1rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+              }
 
-        .section-title {
-          text-align: center;
-          font-size: 2.7rem;
-          font-family: var(--font-quicksand);
-          margin-bottom: 3rem;
-          font-weight: bold;
-          width: 100%;
-        }
+              .section-title {
+                text-align: center;
+                font-size: 2.7rem;
+                font-family: var(--font-quicksand);
+                margin-bottom: 3rem;
+                font-weight: bold;
+                width: 100%;
+              }
 
-        .content-wrapper {
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
+              .content-wrapper {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+              }
 
-        .section-subtitle {
-          font-size: 1.8rem;
-          font-family: var(--font-quicksand);
-          margin-bottom: 3rem;
-          padding-top: 1rem;
-          text-align: center;
-          width: 100%;
-        }
+              .section-subtitle {
+                font-size: 1.8rem;
+                font-family: var(--font-quicksand);
+                margin-bottom: 3rem;
+                padding-top: 1rem;
+                text-align: center;
+                width: 100%;
+              }
 
-        .contact-content {
-          display: flex;
-          flex-direction: row;
-          flex-wrap: wrap;
-          justify-content: space-between;
-          width: 100%;
-          gap: 2rem;
-        }
+              .contact-content {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                width: 100%;
+                gap: 2rem;
+              }
 
-        .contact-info {
-          flex: 1 1 250px;
-          display: flex;
-          flex-direction: column;
-          gap: 2rem;
-        }
+              .contact-info {
+                flex: 1 1 250px;
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+              }
 
-        .info-block {
-          margin-bottom: 1rem;
-        }
+              .info-block {
+                margin-bottom: 0;
+              }
 
-        .info-title {
-          font-size: 1.2rem;
-          font-family: var(--font-quicksand);
-          font-weight: bold;
-          margin-bottom: 0.5rem;
-        }
+              .info-title {
+                font-size: 1.2rem;
+                font-family: var(--font-quicksand);
+                font-weight: bold;
+                margin-bottom: 0.5rem;
+              }
 
-        .info-text {
-          font-size: 1.1rem;
-          font-family: var(--font-quicksand);
-        }
+              .info-text {
+                font-size: 1.1rem;
+                font-family: var(--font-quicksand);
+              }
 
-        .contact-form {
-          flex: 2 1 500px;
-          max-width: 600px;
-          padding: 0 4rem;
-        }
+              .contact-form {
+                flex: 2 1 500px;
+                max-width: 600px;
+                padding: 0 4rem;
+              }
 
-        .form-group {
-          margin-bottom: 1rem;
-          width: 100%;
-        }
+              .form-group {
+                margin-bottom: 1rem;
+                width: 100%;
+              }
 
-        .form-input,
-        .form-select,
-        .form-textarea {
-          width: 100%;
-          padding: 0.8rem 1rem;
-          font-size: 1rem;
-          border-radius: 4px;
-          border: none;
-          background-color: #f0f0f0;
-          font-family: var(--font-quicksand);
-        }
+              .form-input,
+              .form-select,
+              .form-textarea {
+                width: 100%;
+                padding: 0.8rem 1rem;
+                font-size: 1rem;
+                border-radius: 4px;
+                border: none;
+                background-color: #f0f0f0;
+                font-family: var(--font-quicksand);
+              }
 
-        .form-input.error {
-          border: 1px solid #d32f2f;
-        }
+              .form-input.error {
+                border: 1px solid #d32f2f;
+              }
 
-        .error-message {
-          color: #d32f2f;
-          font-size: 0.8rem;
-          margin-top: 0.3rem;
-          padding-left: 0.5rem;
-        }
+              .error-message {
+                color: #d32f2f;
+                font-size: 0.8rem;
+                margin-top: 0.3rem;
+                padding-left: 0.5rem;
+              }
 
-        .select-label {
-          display: block;
-          margin-bottom: 0.5rem;
-          font-family: var(--font-quicksand);
-        }
+              .select-label {
+                display: block;
+                margin-bottom: 0.5rem;
+                font-family: var(--font-quicksand);
+                font-size: 0.8rem;
+              }
 
-        .form-textarea {
-          min-height: 100px;
-          resize: vertical;
-        }
+              .form-textarea {
+                min-height: 100px;
+                resize: vertical;
+              }
 
-        .status-message {
-          margin-bottom: 1rem;
-          padding: 0.8rem;
-          border-radius: 4px;
-          text-align: center;
-          font-family: var(--font-quicksand);
-        }
+              .status-message {
+                margin-bottom: 1rem;
+                padding: 0.8rem;
+                border-radius: 4px;
+                text-align: center;
+                font-family: var(--font-quicksand);
+              }
 
-        .status-message.error {
-          background-color: #ffdddd;
-          color: #d32f2f;
-        }
+              .status-message.error {
+                background-color: #ffdddd;
+                color: #d32f2f;
+              }
 
-        .status-message.success {
-          background-color: #ddffdd;
-          color: #388e3c;
-        }
+              .status-message.success {
+                background-color: #ddffdd;
+                color: #388e3c;
+              }
 
-        .submit-container {
-          display: flex;
-          justify-content: center;
-          width: 100%;
-        }
+              .submit-container {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+              }
 
-        .submit-button {
-          padding: 0.8rem 2.5rem;
-          font-size: 1rem;
-          background-color: #b3b3b3;
-          color: #000;
-          border: none;
-          border-radius: 4px;
-          cursor: pointer;
-          font-family: var(--font-quicksand);
-          font-weight: bold;
-          transition: all 0.3s ease;
-        }
+              .submit-button {
+                padding: 0.8rem 2.5rem;
+                font-size: 1rem;
+                background-color: #b3b3b3;
+                color: #000;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-family: var(--font-quicksand);
+                font-weight: bold;
+                transition: all 0.3s ease;
+              }
 
-        .submit-button:hover {
-          background-color: #a0a0a0;
-        }
+              .submit-button:hover {
+                background-color: #a0a0a0;
+              }
 
-        .submit-button.submitting {
-          background-color: #e0e0e0;
-          color: #888;
-          cursor: not-allowed;
-        }
+              .submit-button.submitting {
+                background-color: #e0e0e0;
+                color: #888;
+                cursor: not-allowed;
+              }
 
-        .whatsapp-container {
-          padding-top: 5rem;
-          display: flex;
-          justify-content: center;
-          width: 100%;
-        }
+              .whatsapp-container {
+                padding-top: 5rem;
+                display: flex;
+                justify-content: center;
+                width: 100%;
+              }
 
-        /* Media Queries */
-        @media (max-width: 1024px) {
-          .contact-form {
-            padding: 0 2rem;
-          }
-        }
+              /* Media Queries */
+              @media (max-width: 1024px) {
+                .contact-form {
+                  padding: 0 1rem;
+                }
+              }
 
-        @media (max-width: 768px) {
-          .section-title {
-            font-size: 2.3rem;
-          }
-          
-          .section-subtitle {
-            font-size: 1.5rem;
-          }
-          
-          .contact-content {
-            flex-direction: column;
-          }
-          
-          .contact-info {
-            order: 2;
-            padding: 0 2rem;
-          }
-          
-          .contact-form {
-            order: 1;
-            padding: 0 1rem;
-            max-width: 100%;
-          }
-          
-          .whatsapp-container {
-            padding-top: 3rem;
-          }
-        }
+              @media (max-width: 768px) {
+                .section-title {
+                  font-size: 2.3rem;
+                }
 
-        @media (max-width: 480px) {
-          .section.contact-section {
-            min-height: 100vh;
-            padding-top: 2rem;
-          }
-          
-          .section-title {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-          }
-          
-          .section-subtitle {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-          }
-          
-          .info-title {
-            font-size: 1.1rem;
-          }
-          
-          .info-text {
-            font-size: 1rem;
-          }
-          
-          .contact-form {
-            padding: 0;
-          }
-          
-          .form-input,
-          .form-select,
-          .form-textarea {
-            padding: 0.7rem 0.8rem;
-            font-size: 0.9rem;
-          }
-          
-          .submit-button {
-            padding: 0.7rem 2rem;
-            font-size: 0.9rem;
-          }
-        }
-      `}</style>
+                .section-subtitle {
+                  font-size: 1.5rem;
+                }
+
+                .contact-content {
+                  flex-direction: column;
+                  gap: 1.5rem;
+                  align-items: center;
+                }
+
+                .contact-info {
+                  order: 2;
+                  padding: 0 0.1rem;
+                  text-align: center;
+                  max-width: 100%;
+                  width: 100%;
+                  display: flex;
+                  flex-direction: row;
+                  justify-content: center;
+                  flex-wrap: wrap;
+                  margin: 0;
+                  gap: 0.5rem;
+                }
+
+                .info-block {
+                  margin: 0 0.5rem;
+                  min-width: 200px;
+                }
+
+                .contact-form {
+                  order: 1;
+                  padding: 0 1rem;
+                  max-width: 100%;
+                }
+
+                /* Create a contact info container to hold both pieces of info */
+                .mobile-contact-info-container {
+                  display: flex;
+                  flex-direction: column;
+                  gap: 1rem;
+                  width: 100%;
+                  text-align: center;
+                }
+              }
+
+              @media (max-width: 480px) {
+                .section.contact-section {
+                  min-height: 100vh;
+                  padding-top: 2rem;
+                }
+
+                .section-title {
+                  font-size: 2rem;
+                  margin-bottom: 1.5rem;
+                }
+
+                .section-subtitle {
+                  font-size: 1.3rem;
+                  margin-bottom: 1.5rem;
+                }
+
+                .contact-content {
+                  gap: 0.25rem;
+                }
+
+                .contact-info {
+                  padding: 0;
+                  gap: 0;
+                  margin: 0;
+                }
+
+                .info-block {
+                  margin: 0 0.5rem;
+                  text-align: center;
+                }
+
+                .info-title {
+                  font-size: 1.1rem;
+                  margin-bottom: 0.3rem;
+                }
+
+                .info-text {
+                  font-size: 1rem;
+                }
+
+                .contact-form {
+                  padding: 0;
+                  margin: 1rem 0;
+                }
+
+                .form-input,
+                .form-select,
+                .form-textarea {
+                  padding: 0.7rem 0.8rem;
+                  font-size: 0.9rem;
+                }
+
+                .submit-button {
+                  padding: 0.7rem 2rem;
+                  font-size: 0.9rem;
+                }
+
+                .whatsapp-container {
+                  padding-top: 2rem;
+                }
+              }
+            `}</style>
         </section>
     );
 };

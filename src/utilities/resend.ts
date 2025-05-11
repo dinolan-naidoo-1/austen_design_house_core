@@ -1,5 +1,4 @@
 "use server";
-
 import { Resend } from "resend";
 
 // Make sure the environment variable is correctly set in your .env file
@@ -18,8 +17,8 @@ export async function sendEmail(formData: FormData) {
     try {
         const data = await resend.emails.send({
             from: "OrcDev <onboarding@resend.dev>",
-            to: "dinolannaidoo9@gmail.com",
-            subject: interestedIn ? `New ${interestedIn} Inquiry` : "New Inquiry",
+            to: "kyle@austendesign.co.za",
+            subject: interestedIn ? `New Client Inquiry` : "New Inquiry",
             html: `
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Contact Number:</strong> ${contactNumber}</p>

@@ -13,84 +13,131 @@ const HomeSection: React.FC<SectionProps> = ({ id }) => {
                     {/* Text Content */}
                     <div className="text-content">
                         <h1 className="main-heading">ELEVATING BRANDS WITH</h1>
-                        <h1 className="highlight-heading">3D MODELS</h1>
 
-                        {/* Animated Text */}
                         <div className="animated-text-container">
                             <style
                                 dangerouslySetInnerHTML={{
                                     __html: `
-                    @keyframes bounceIn {
-                      0% {
+                @keyframes bounceIn {
+                    0% {
                         opacity: 0;
                         transform: scale(0);
-                      }
-                      20% {
+                    }
+                    20% {
                         opacity: 1;
-                      }
-                      40% {
+                    }
+                    40% {
                         transform: scale(1.15)
-                      }
-                      70% {
+                    }
+                    70% {
                         transform: scale(.9)
-                      }
-                      100% {
+                    }
+                    100% {
                         transform: scale(1);
                         opacity: 1;
-                      }
                     }
+                }
 
-                    .animated-letter {
-                      display: inline-block;
-                      animation: bounceIn 3s forwards;
-                      animation-timing-function: ease-out;
-                      opacity: 0;
-                      animation-iteration-count: infinite;
-                      animation-direction: alternate;
-                      animation-duration: 4s;
+                .animated-heading-wrapper {
+                    display: flex;
+                    flex-wrap: nowrap;
+                }
+
+                .text-group {
+                    display: inline-block;
+                    white-space: nowrap;
+                    margin-right: 0.9rem;
+                }
+
+                .animated-letter {
+                    display: inline-block;
+                    animation: bounceIn 6s forwards;
+                    animation-timing-function: ease-out;
+                    opacity: 0;
+                    animation-iteration-count: infinite;
+                    animation-direction: alternate;
+                    animation-duration: 6s;
+                }
+                
+                /* Exact same animation timing as before, but for the global index */
+                /* 3 */ .letter-0 { animation-delay: 0.1s; }
+                /* D */ .letter-1 { animation-delay: 0.2s; }
+                /* M */ .letter-2 { animation-delay: 0.3s; margin-left: 12px }
+                /* O */ .letter-3 { animation-delay: 0.4s; }
+                /* D */ .letter-4 { animation-delay: 0.5s; }
+                /* E */ .letter-5 { animation-delay: 0.6s; }
+                /* L */ .letter-6 { animation-delay: 0.7s; }
+                /* S */ .letter-7 { animation-delay: 0.8s; }
+                /* ; */ .letter-8 { animation-delay: 0.9s; }
+                /* A */ .letter-9 { animation-delay: 1.0s;}
+                /* N */ .letter-10 { animation-delay: 1.1s; }
+                /* I */ .letter-11 { animation-delay: 1.2s; }
+                /* M */ .letter-12 { animation-delay: 1.3s; }
+                /* A */ .letter-13 { animation-delay: 1.4s; }
+                /* T */ .letter-14 { animation-delay: 1.5s; }
+                /* I */ .letter-15 { animation-delay: 1.6s; }
+                /* O */ .letter-16 { animation-delay: 1.7s; }
+                /* N */ .letter-17 { animation-delay: 1.8s; }
+                /* S */ .letter-18 { animation-delay: 1.9s; }
+                /* ; */ .letter-19 { animation-delay: 2.0s; }
+                /* A */ .letter-20 { animation-delay: 2.1s; }
+                /* U */ .letter-21 { animation-delay: 2.2s; }
+                /* G */ .letter-22 { animation-delay: 2.3s; }
+                /* M */ .letter-23 { animation-delay: 2.4s; }
+                /* E */ .letter-24 { animation-delay: 2.5s; }
+                /* N */ .letter-25 { animation-delay: 2.6s; }
+                /* T */ .letter-26 { animation-delay: 2.7s; }
+                /* E */ .letter-27 { animation-delay: 2.8s; }
+                /* D */ .letter-28 { animation-delay: 2.9s; }
+                /* R */ .letter-29 { animation-delay: 3.0s; }
+                /* E */ .letter-30 { animation-delay: 3.1s; margin-left: 12px; }
+                /* A */ .letter-31 { animation-delay: 3.2s; }
+                /* L */ .letter-32 { animation-delay: 3.3s; }
+                /* I */ .letter-33 { animation-delay: 3.4s; }
+                /* T */ .letter-34 { animation-delay: 3.5s; }
+                /* Y */ .letter-35 { animation-delay: 3.6s; }
+                       .letter-36 { animation-delay: 3.6s; }
+                       .letter-37 { animation-delay: 3.6s; }
+                       .letter-38 { animation-delay: 3.6s; }
+
+                @media (max-width: 768px) {
+                    .animated-heading-wrapper {
+                        flex-wrap: wrap;
                     }
                     
-                    /* Stagger animation for each letter */
-                    .animated-letter:nth-child(1) { animation-delay: 0.1s; } 
-                    .animated-letter:nth-child(2) { animation-delay: 0.2s; }
-                    .animated-letter:nth-child(3) { animation-delay: 0.3s; }
-                    .animated-letter:nth-child(4) { animation-delay: 0.4s; }
-                    .animated-letter:nth-child(5) { animation-delay: 0.5s; }
-                    .animated-letter:nth-child(6) { animation-delay: 0.6s; }
-                    .animated-letter:nth-child(7) { animation-delay: 0.7s; }
-                    .animated-letter:nth-child(8) { animation-delay: 0.8s; }
-                    .animated-letter:nth-child(9) { animation-delay: 0.9s; }
-                    .animated-letter:nth-child(10) { animation-delay: 1.0s; }
-                    .animated-letter:nth-child(11) { animation-delay: 1.1s; margin-left: 10px; }
-                    .animated-letter:nth-child(12) { animation-delay: 1.2s; margin-left: 10px; }
-                    .animated-letter:nth-child(13) { animation-delay: 1.3s; }
-                    .animated-letter:nth-child(14) { animation-delay: 1.4s; }
-                    .animated-letter:nth-child(15) { animation-delay: 1.5s; }
-                    .animated-letter:nth-child(16) { animation-delay: 1.6s; }
-                    .animated-letter:nth-child(17) { animation-delay: 1.7s; }
-                    .animated-letter:nth-child(18) { animation-delay: 1.8s; }
-                    .animated-letter:nth-child(19) { animation-delay: 1.9s; }
-                    .animated-letter:nth-child(20) { animation-delay: 2.0s; }
-                    .animated-letter:nth-child(21) { animation-delay: 2.1s; margin-left: 10px; }
-                    .animated-letter:nth-child(22) { animation-delay: 2.2s; }
-                    .animated-letter:nth-child(23) { animation-delay: 2.3s; }
-                    .animated-letter:nth-child(24) { animation-delay: 2.4s; }
-                    .animated-letter:nth-child(25) { animation-delay: 2.5s; }
-                    .animated-letter:nth-child(26) { animation-delay: 2.6s; }
-                    .animated-letter:nth-child(27) { animation-delay: 2.7s; }
-                    .animated-letter:nth-child(28) { animation-delay: 2.8s; }
-                    .animated-letter:nth-child(29) { animation-delay: 2.9s; }
-                    .animated-letter:nth-child(30) { animation-delay: 3.0s; }
-                  `,
+                    .text-group {
+                        width: 100%;
+                        margin-bottom: 0.5rem;
+                    }
+                }
+            `,
                                 }}
                             />
 
                             <h1 className="animated-heading">
-                                {"ANIMATIONS;AUGMENTED REALITY".split("").map((char, index) => (
-                                    <span key={index} className="animated-letter">
-                    {char}
-                  </span>
-                                ))}
+                                <div className="animated-heading-wrapper">
+            <span className="text-group">
+                {"3D MODELS;".split("").map((char, index) => (
+                    <span key={index} className={`animated-letter letter-${index}`}>
+                        {char}
+                    </span>
+                ))}
+            </span>
+                                    <span className="text-group">
+                {"ANIMATIONS;".split("").map((char, index) => (
+                    <span key={index} className={`animated-letter letter-${index + 9}`}>
+                        {char}
+                    </span>
+                ))}
+            </span>
+                                    <span className="text-group">
+                {"AUGMENTED REALITY".split("").map((char, index) => (
+                    <span key={index} className={`animated-letter letter-${index + 20}`}>
+                        {char}
+                    </span>
+                ))}
+            </span>
+                                </div>
                             </h1>
                         </div>
 
@@ -142,23 +189,24 @@ const HomeSection: React.FC<SectionProps> = ({ id }) => {
                         </div>
                     </div>
 
-                    {/* 3D Model Container */}
                     <div className="model-container">
                         <div className="model-wrapper">
-                            <div className="sketchfab-embed-wrapper">
-                                <iframe
-                                    title="3D Model"
-                                    frameBorder="0"
-                                    allowFullScreen
-                                 //   mozallowfullscreen="true"
-                                 //   webkitallowfullscreen="true"
-                                    allow="autoplay; fullscreen; xr-spatial-tracking"
-                                    xr-spatial-tracking="true"
-                                    execution-while-out-of-viewport="true"
-                                    execution-while-not-rendered="true"
-                                    web-share="true"
-                                    src="https://sketchfab.com/models/1446408b3dca49b5bb5d346f76e0c610/embed?autostart=1&transparent=1"
+
+                            <div className="gif-container">
+
+                                <img
+                                    src="/home-screen-shoe.gif"
+                                    alt="Animation"
+                                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                                 />
+                                <p style={{
+                                    padding: "1.1rem",
+                                    textAlign: "center",
+                                    fontSize: "1rem",
+                                    color: "#363636",
+                                    fontFamily: "var(--font-quicksand)",
+                                }}>Artlabs</p>
+
                             </div>
                         </div>
                     </div>
@@ -172,234 +220,214 @@ const HomeSection: React.FC<SectionProps> = ({ id }) => {
 
             {/* CSS Styles */}
             <style jsx>{`
-        .home-container {
-          width: 100%;
-          max-width: 100%;
-          padding: 0 1rem;
-          display: flex;
-          flex-direction: column;
-          margin: 0 auto;
-        }
+              .home-container {
+                width: 100%;
+                max-width: 100%;
+                padding: 0 1rem;
+                display: flex;
+                flex-direction: column;
+                margin: 0 auto;
+              }
 
-        .content-wrapper {
-          width: 100%;
-          display: flex;
-          flex-direction: row;
-          flex-wrap: wrap;
-          justify-content: space-between;
-          padding-top: 9.5rem;
-          position: relative;
-        }
+              .content-wrapper {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                padding-top: 9.5rem;
+                position: relative;
+              }
 
-        .text-content {
-          width: 50%;
-          min-width: 300px;
-          padding-right: 2rem;
-          padding-left: 2rem;
-          z-index: 2;
-          margin-bottom: 2rem;
-        }
+              .text-content {
+                width: 50%;
+                min-width: 300px;
+                padding-right: 2rem;
+                padding-left: 2rem;
+                z-index: 2;
+                margin-bottom: 2rem;
+              }
 
-        .main-heading {
-          text-align: left;
-          font-size: 2.5rem;
-          font-family: var(--font-quicksand);
-        }
+              .main-heading {
+                text-align: left;
+                font-size: 2.5rem;
+                font-family: var(--font-quicksand);
+              }
 
-        .highlight-heading {
-          text-align: left;
-          font-size: 4rem;
-          color: #e6a2bb;
-          font-family: var(--font-quicksand);
-        }
+              .animated-heading {
+                padding-top: 1rem;
+                text-align: left;
+                font-size: 1.8rem;
+                color: #9f3c5e;
+                font-family: var(--font-quicksand);
+                transform-origin: center bottom;
+              }
 
-        .animated-heading {
-          padding-top: 1rem;
-          text-align: left;
-          font-size: 2rem;
-          color: #3d3d3d;
-          font-family: var(--font-quicksand);
-          transform-origin: center bottom;
-        }
+              .description-text {
+                padding-top: 1.8rem;
+                text-align: left;
+                font-size: 1.5rem;
+                color: #363636;
+                font-family: var(--font-quicksand);
+              }
 
-        .description-text {
-          padding-top: 1.8rem;
-          text-align: left;
-          font-size: 1.5rem;
-          color: #363636;
-          font-family: var(--font-quicksand);
-        }
+              .services-container {
+                padding-top: 3rem;
+                padding-bottom: 1rem;
+                width: 100%;
+              }
 
-        .services-container {
-          padding-top: 3rem;
-          padding-bottom: 1rem;
-          width: 100%;
-        }
+              .services-heading {
+                font-size: 1.6rem;
+                color: #363636;
+                font-family: var(--font-quicksand);
+                margin-bottom: 1rem;
+              }
 
-        .services-heading {
-          font-size: 1.6rem;
-          color: #363636;
-          font-family: var(--font-quicksand);
-          margin-bottom: 1rem;
-        }
+              .services-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                column-gap: 2rem;
+                row-gap: 0.75rem;
+                width: 100%;
+              }
 
-        .services-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          column-gap: 2rem;
-          row-gap: 0.75rem;
-          width: 100%;
-        }
+              .service-item {
+                display: flex;
+                align-items: center;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+              }
 
-        .service-item {
-          display: flex;
-          align-items: center;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
+              .bullet-point {
+                display: inline-block;
+                width: 8px;
+                height: 8px;
+                min-width: 8px;
+                border-radius: 50%;
+                background-color: #9f3c5e;
+                margin-right: 10px;
+              }
 
-        .bullet-point {
-          display: inline-block;
-          width: 8px;
-          height: 8px;
-          min-width: 8px;
-          border-radius: 50%;
-          background-color: #e6a2bb;
-          margin-right: 10px;
-        }
+              .service-text {
+                font-size: 1.3rem;
+                color: #363636;
+                font-family: var(--font-quicksand);
+                white-space: normal;
+              }
 
-        .service-text {
-          font-size: 1.3rem;
-          color: #363636;
-          font-family: var(--font-quicksand);
-          white-space: normal;
-        }
+              .model-container {
+                width: 45%;
+                min-width: 300px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1;
+              }
 
-        .model-container {
-          width: 45%;
-          min-width: 300px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          z-index: 1;
-        }
+              .model-wrapper {
+                width: 100%;
+                max-width: 600px;
+                border: 1px solid #d7d7d7;
+                background-color: #e9e9e9;
+              }
 
-        .model-wrapper {
-          width: 100%;
-          max-width: 600px;
-          border: 1px solid #d7d7d7;
-          background-color: #e9e9e9;
-        }
+              .whatsapp-container {
+                margin-top: 6rem;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+              }
 
-        .sketchfab-embed-wrapper {
-          width: 100%;
-          height: 400px;
-        }
+              /* Media Queries */
+              @media (max-width: 1024px) {
+                .text-content {
+                  width: 60%;
+                }
 
-        .sketchfab-embed-wrapper iframe {
-          width: 100%;
-          height: 100%;
-        }
+                .model-container {
+                  width: 40%;
+                }
+              }
 
-        .whatsapp-container {
-          margin-top: 6rem;
-          width: 100%;
-          display: flex;
-          justify-content: center;
-        }
+              @media (max-width: 768px) {
+                .content-wrapper {
+                  flex-direction: column;
+                  padding-top: 7rem;
+                }
 
-        /* Media Queries */
-        @media (max-width: 1024px) {
-          .text-content {
-            width: 60%;
-          }
-          
-          .model-container {
-            width: 40%;
-          }
-        }
+                .text-content {
+                  width: 100%;
+                  padding-right: 1rem;
+                  padding-left: 1rem;
+                  order: 2;
+                }
 
-        @media (max-width: 768px) {
-          .content-wrapper {
-            flex-direction: column;
-            padding-top: 7rem;
-          }
-          
-          .text-content {
-            width: 100%;
-            padding-right: 1rem;
-            padding-left: 1rem;
-            order: 2;
-          }
-          
-          .model-container {
-            width: 100%;
-            max-width: 100%;
-            margin-bottom: 2rem;
-            order: 1;
-          }
-          
-          .model-wrapper {
-            max-width: 100%;
-          }
-          
-          .services-grid {
-            grid-template-columns: 1fr;
-          }
-          
-          .main-heading {
-            font-size: 2rem;
-          }
-          
-          .highlight-heading {
-            font-size: 3rem;
-          }
-          
-          .animated-heading {
-            font-size: 1.5rem;
-          }
-          
-          .description-text {
-            font-size: 1.2rem;
-          }
-        }
+                .model-container {
+                  width: 100%;
+                  max-width: 100%;
+                  margin-bottom: 2rem;
+                  order: 1;
+                }
 
-        @media (max-width: 480px) {
-          .content-wrapper {
-            padding-top: 6rem;
-          }
-          
-          .text-content {
-            min-width: unset;
-            padding: 0;
-          }
-          
-          .model-container {
-            min-width: unset;
-          }
-          
-          .main-heading {
-            font-size: 1.8rem;
-          }
-          
-          .highlight-heading {
-            font-size: 2.5rem;
-          }
-          
-          .animated-heading {
-            font-size: 1.2rem;
-          }
-          
-          .service-text {
-            font-size: 1rem;
-          }
-          
-          .sketchfab-embed-wrapper {
-            height: 300px;
-          }
-        }
-      `}</style>
+                .model-wrapper {
+                  max-width: 100%;
+                }
+
+                .services-grid {
+                  grid-template-columns: 1fr;
+                }
+
+                .main-heading {
+                  font-size: 2rem;
+                }
+
+                .highlight-heading {
+                  font-size: 3rem;
+                }
+
+                .animated-heading {
+                  font-size: 1.7rem;
+                }
+
+                .description-text {
+                  font-size: 1.2rem;
+                }
+              }
+
+              @media (max-width: 480px) {
+                .content-wrapper {
+                  padding-top: 6rem;
+                }
+
+                .text-content {
+                  min-width: unset;
+                  padding: 0;
+                }
+
+                .model-container {
+                  min-width: unset;
+                }
+
+                .main-heading {
+                  font-size: 1.8rem;
+                }
+
+                .highlight-heading {
+                  font-size: 2.5rem;
+                }
+
+                .animated-heading {
+                  font-size: 1.4rem;
+                }
+
+                .service-text {
+                  font-size: 1rem;
+                }
+
+              }
+            `}</style>
         </section>
     );
 };
