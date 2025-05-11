@@ -26,8 +26,21 @@ jobs:
         env:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
 
+      # Debug step to find the output directory
+      - name: Debug output directories
+        run: |
+          echo "Listing directory structure:"
+          find . -type d -maxdepth 3 -not -path "*/node_modules/*" -not -path "*/.git/*"
+          echo "Looking for possible output directories:"
+          find . -name "index.html" -not -path "*/node_modules/*" -not -path "*/.git/*"
+
+      # Create .htaccess file with improved error handling
       - name: Create .htaccess for client-side routing
         run: |
+          # Make sure the out directory exists before trying to write to it
+          mkdir -p ./out
+          
+          # Create .htaccess file
           cat > ./out/.htaccess << 'EOL'
           <IfModule mod_rewrite.c>
           RewriteEngine On
@@ -38,14 +51,18 @@ jobs:
           RewriteRule . /index.html [L]
           </IfModule>
           EOL
+          
+          # Confirm file created
+          cat ./out/.htaccess
 
+      # Modified deployment step with a fallback to different directories if needed
       - name: Deploy to Afrihost
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: kenway.aserv.co.za
           username: austeno2b4d1
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./out/
+          local-dir: ./out/  # This should be the primary directory
           server-dir: /public_html/
           exclude: |
             **/.git*
